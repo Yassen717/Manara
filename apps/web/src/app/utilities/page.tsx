@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import React, { Suspense, useEffect, useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import {
   EmptyState,
   FieldLabel,
@@ -27,12 +27,14 @@ const UTILITY_TABS: { id: UtilityFilter; en: string; ar: string }[] = [
   { id: 'telecom', en: 'Telecom', ar: 'الاتصالات' },
 ];
 
-export default function UtilitiesPage() {
+function UtilitiesBrowser() {
   const { token, ready } = useAuth();
   const { lang } = useLanguage();
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const paramTab: TabId = searchParams.get('tab') === 'outages' ? 'outages' : 'bills';
 
-  const [tab, setTab] = useState<TabId>('bills');
+  const [tab, setTab] = useState<TabId>(paramTab);
 
   // bills state
   const [bills, setBills] = useState<Bill[] | null>(null);
@@ -45,6 +47,10 @@ export default function UtilitiesPage() {
   const [region, setRegion] = useState('');
   const [utility, setUtility] = useState<UtilityFilter>('electricity');
   const [outages, setOutages] = useState<OutageSchedule[] | null>(null);
+
+  useEffect(() => {
+    setTab(paramTab);
+  }, [paramTab]);
 
   useEffect(() => {
     if (ready && !token) router.replace('/login');
@@ -210,5 +216,20 @@ export default function UtilitiesPage() {
         )}
       </div>
     </>
+  );
+}
+
+export default function UtilitiesPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="container-page space-y-3 py-10">
+          <SkeletonCard />
+          <SkeletonCard />
+        </div>
+      }
+    >
+      <UtilitiesBrowser />
+    </Suspense>
   );
 }

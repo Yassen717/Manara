@@ -23,6 +23,18 @@ const PERIOD: Record<Entitlement['period'], { en: string; ar: string }> = {
   one_time: { en: 'One-time', ar: 'لمرة واحدة' },
 };
 
+const ENTITLEMENT_STATUS: Record<Entitlement['status'], { en: string; ar: string }> = {
+  active: { en: 'Active', ar: 'نشط' },
+  pending: { en: 'Pending', ar: 'قيد الانتظار' },
+  paused: { en: 'Paused', ar: 'موقوف' },
+};
+
+const PAYMENT_STATUS: Record<EntitlementPayment['status'], { en: string; ar: string }> = {
+  paid: { en: 'Paid', ar: 'مدفوعة' },
+  scheduled: { en: 'Scheduled', ar: 'مجدولة' },
+  delayed: { en: 'Delayed', ar: 'متأخرة' },
+};
+
 export function EntitlementCard({
   entitlement,
   token,
@@ -74,7 +86,14 @@ export function EntitlementCard({
           <span className="font-bold text-ink-900">
             {fmtMoney(entitlement.amount, entitlement.currency, lang)}
           </span>
-          <StatusPill status={entitlement.status} />
+          <StatusPill
+            status={entitlement.status}
+            label={pick(
+              lang,
+              ENTITLEMENT_STATUS[entitlement.status].en,
+              ENTITLEMENT_STATUS[entitlement.status].ar,
+            )}
+          />
         </span>
         <svg
           viewBox="0 0 24 24"
@@ -119,7 +138,10 @@ export function EntitlementCard({
                       {fmtMoney(p.amount, entitlement.currency, lang)}
                     </td>
                     <td className="py-2 text-end">
-                      <StatusPill status={p.status} />
+                      <StatusPill
+                        status={p.status}
+                        label={pick(lang, PAYMENT_STATUS[p.status].en, PAYMENT_STATUS[p.status].ar)}
+                      />
                     </td>
                   </tr>
                 ))}

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Button, StatusPill } from '@/components/ui';
+import { Button, Spinner, StatusPill } from '@/components/ui';
 import { Icon } from '@/components/ui/icons';
 import { useLanguage, pick } from '@/lib/i18n';
 import { fmtDate, fmtMoney } from '@/lib/format';
@@ -14,6 +14,12 @@ const UTILITY_META: Record<Bill['utility'], { icon: string; tint: string; en: st
     telecom: { icon: 'signal', tint: 'bg-violet-50 text-violet-600', en: 'Telecom', ar: 'الاتصالات' },
     gas: { icon: 'fuel', tint: 'bg-rose-50 text-rose-600', en: 'Gas', ar: 'الغاز' },
   };
+
+const BILL_STATUS: Record<Bill['status'], { en: string; ar: string }> = {
+  due: { en: 'Due', ar: 'مستحقة' },
+  paid: { en: 'Paid', ar: 'مدفوعة' },
+  overdue: { en: 'Overdue', ar: 'متأخرة' },
+};
 
 export function BillCard({
   bill,
@@ -48,7 +54,10 @@ export function BillCard({
       </div>
       <div className="flex flex-col items-end gap-1.5">
         <p className="font-bold text-ink-900">{fmtMoney(bill.amount, bill.currency, lang)}</p>
-        <StatusPill status={bill.status} />
+        <StatusPill
+          status={bill.status}
+          label={pick(lang, BILL_STATUS[bill.status].en, BILL_STATUS[bill.status].ar)}
+        />
       </div>
       <Button
         size="sm"
@@ -56,12 +65,7 @@ export function BillCard({
         disabled={paid || paying}
         onClick={() => onPay(bill.id)}
       >
-        {paying ? (
-          <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none">
-            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-            <path className="opacity-90" fill="currentColor" d="M4 12a8 8 0 0 1 8-8v4a4 4 0 0 0-4 4H4z" />
-          </svg>
-        ) : null}
+        {paying ? <Spinner className="h-4 w-4 !text-white" /> : null}
         {paid ? pick(lang, 'Paid', 'مدفوعة') : pick(lang, 'Pay', 'ادفع')}
       </Button>
     </div>

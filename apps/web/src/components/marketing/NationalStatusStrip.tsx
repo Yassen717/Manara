@@ -17,6 +17,13 @@ const SERVICE_META: Record<NationalStatusService['key'], { icon: string; en: str
   payments: { icon: 'wallet', en: 'Payments', ar: 'المدفوعات' },
 };
 
+// Same wording as the /status page cards.
+const STATUS_LABEL: Record<NationalStatusService['status'], { en: string; ar: string }> = {
+  operational: { en: 'Operational', ar: 'تعمل' },
+  degraded: { en: 'Degraded', ar: 'متأثرة جزئياً' },
+  outage: { en: 'Outage', ar: 'متوقفة' },
+};
+
 export function NationalStatusStrip() {
   const { lang, t } = useLanguage();
   const [data, setData] = useState<NationalStatus | null>(null);
@@ -58,6 +65,7 @@ export function NationalStatusStrip() {
                 ))
               : (data?.services ?? []).map((s) => {
                   const meta = SERVICE_META[s.key] ?? { icon: 'signal', en: s.key, ar: s.key };
+                  const statusLabel = STATUS_LABEL[s.status] ?? { en: s.status, ar: s.status };
                   return (
                     <span
                       key={s.key}
@@ -68,7 +76,10 @@ export function NationalStatusStrip() {
                       <span className="text-xs font-bold text-ink-700">
                         {pick(lang, meta.en, meta.ar)}
                       </span>
-                      <StatusPill status={s.status} />
+                      <StatusPill
+                        status={s.status}
+                        label={pick(lang, statusLabel.en, statusLabel.ar)}
+                      />
                       <span className="text-[10px] font-medium text-ink-400" dir="auto">
                         {timeAgo(s.updatedAt, lang)}
                       </span>

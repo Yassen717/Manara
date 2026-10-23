@@ -8,6 +8,24 @@ import { fmtDate } from '@/lib/format';
 import type { DigitalDocument } from '@/lib/types';
 import { FakeQr } from './FakeQr';
 
+// Human English labels for the snake_case document types the API returns.
+const DOC_TYPE_EN: Record<string, string> = {
+  national_id: 'National ID',
+  birth_certificate: 'Birth certificate',
+  marriage_certificate: 'Marriage certificate',
+  death_certificate: 'Death certificate',
+  family_record: 'Family record extract',
+  passport: 'Passport',
+  drivers_license: 'Driving license',
+  criminal_record: 'Criminal record',
+};
+
+const DOC_STATUS: Record<DigitalDocument['status'], { en: string; ar: string }> = {
+  active: { en: 'Active', ar: 'نشط' },
+  expired: { en: 'Expired', ar: 'منتهي' },
+  revoked: { en: 'Revoked', ar: 'ملغي' },
+};
+
 // Per-type accent: icon + gradient strip, like the colored band on a real
 // e-document. Matches by keyword since `type` is a free-form API string.
 function docStyle(type: string): { icon: string; strip: string } {
@@ -39,7 +57,7 @@ export function DocumentCard({ doc, fresh = false }: { doc: DigitalDocument; fre
         <div className="flex min-w-0 items-center gap-2">
           <Icon name={style.icon} className="h-5 w-5 shrink-0" />
           <span className="truncate text-sm font-bold">
-            {pick(lang, doc.type, doc.typeAr)}
+            {pick(lang, DOC_TYPE_EN[doc.type] ?? doc.type.replace(/_/g, ' '), doc.typeAr)}
           </span>
         </div>
         {fresh ? (
@@ -58,7 +76,10 @@ export function DocumentCard({ doc, fresh = false }: { doc: DigitalDocument; fre
             <p className="truncate font-semibold text-ink-900">{doc.holderName}</p>
             <p className="mt-0.5 font-mono text-xs text-ink-500">{doc.reference}</p>
           </div>
-          <StatusPill status={doc.status} />
+          <StatusPill
+            status={doc.status}
+            label={pick(lang, DOC_STATUS[doc.status].en, DOC_STATUS[doc.status].ar)}
+          />
         </div>
 
         <dl className="mt-4 grid grid-cols-2 gap-3 text-sm">

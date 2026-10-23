@@ -4,7 +4,7 @@ import { PanelSkeleton } from './Panel';
 
 export function DashboardSkeleton() {
   return (
-    <div className="container-page space-y-8 py-10">
+    <div className="space-y-8">
       <div>
         <Skeleton className="h-8 w-72" />
         <Skeleton className="mt-3 h-4 w-52" />

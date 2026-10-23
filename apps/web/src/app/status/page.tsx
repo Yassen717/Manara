@@ -81,7 +81,7 @@ export default function StatusPage() {
               'فترات طرح الأحمال وانقطاع الإمداد المخطط لها حسب البلدية.',
             )}
             action={
-              <Link href="/utilities" className="link text-sm">
+              <Link href="/utilities?tab=outages" className="link text-sm">
                 {pick(lang, 'View all', 'عرض الكل')}
               </Link>
             }

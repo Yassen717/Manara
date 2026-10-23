@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { api } from '@/lib/api';
 import { useLanguage, pick } from '@/lib/i18n';
 import type { CategoryInfo, ServiceCategory, ServiceSummary } from '@/lib/types';
@@ -10,14 +11,38 @@ import { ServiceCard } from '@/components/services/ServiceCard';
 
 type CategoryFilter = ServiceCategory | 'all';
 
-export default function ServicesPage() {
+const CATEGORY_IDS: ServiceCategory[] = [
+  'identity',
+  'documents',
+  'travel',
+  'health',
+  'education',
+  'utilities',
+  'payments',
+  'business',
+  'social',
+  'justice',
+  'municipal',
+  'employment',
+];
+
+function ServicesBrowser() {
   const { lang, t } = useLanguage();
+  const searchParams = useSearchParams();
+  const categoryParam = searchParams.get('category');
+  const paramFilter: CategoryFilter = (CATEGORY_IDS as string[]).includes(categoryParam ?? '')
+    ? (categoryParam as CategoryFilter)
+    : 'all';
   const [categories, setCategories] = useState<CategoryInfo[]>([]);
-  const [active, setActive] = useState<CategoryFilter>('all');
+  const [active, setActive] = useState<CategoryFilter>(paramFilter);
   const [q, setQ] = useState('');
   const [debouncedQ, setDebouncedQ] = useState('');
   const [services, setServices] = useState<ServiceSummary[]>([]);
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setActive(paramFilter);
+  }, [paramFilter]);
 
   useEffect(() => {
     api
@@ -112,5 +137,23 @@ export default function ServicesPage() {
         )}
       </div>
     </>
+  );
+}
+
+export default function ServicesPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="container-page py-8">
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <SkeletonCard key={i} />
+            ))}
+          </div>
+        </div>
+      }
+    >
+      <ServicesBrowser />
+    </Suspense>
   );
 }

@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useLanguage } from '@/lib/i18n';
 import { useAuth } from '@/lib/auth';
-import { Icon } from '@/components/ui/icons';
 
 const links = [
   { href: '/services', key: 'nav.services' },
@@ -94,7 +93,6 @@ export function Navbar() {
           )}
 
           <button className="btn-ghost !p-2 lg:hidden" onClick={() => setOpen(!open)} aria-label="Menu">
-            <Icon name={open ? 'check' : 'briefcase'} className="hidden" />
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
               {open ? <path d="M18 6 6 18M6 6l12 12" strokeLinecap="round" /> : <path d="M4 7h16M4 12h16M4 17h16" strokeLinecap="round" />}
             </svg>
