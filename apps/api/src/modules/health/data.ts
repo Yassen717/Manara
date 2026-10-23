@@ -1,0 +1,260 @@
+import { Appointment, Facility, MedicineStock } from '../../common/types';
+import { DEMO_CITIZEN, daysAhead } from '../../data/seed';
+
+// Mock health data: facility directory, medicine stock visibility, and
+// per-citizen appointments. Mirrors real Libyan pain points — medicine
+// stockouts (oncology/dialysis), flood-damaged facilities, regional gaps.
+// Swap for a real Ministry of Health provider API later.
+
+export const FACILITIES: Facility[] = [
+  {
+    id: 'fac_tch',
+    name: 'Tripoli Central Hospital',
+    nameAr: 'مستشفى طرابلس المركزي',
+    type: 'hospital',
+    municipality: 'Tripoli Center',
+    region: 'Tripoli',
+    services: ['Emergency', 'Dialysis', 'Cardiology', 'Maternity', 'Pediatrics', 'Imaging'],
+    status: 'open',
+  },
+  {
+    id: 'fac_khadra',
+    name: 'Al-Khadra General Hospital',
+    nameAr: 'مستشفى الخضراء العام',
+    type: 'hospital',
+    municipality: 'Tripoli Center',
+    region: 'Tripoli',
+    services: ['Emergency', 'Maternity', 'Pediatrics', 'Pharmacy', 'Imaging'],
+    status: 'open',
+  },
+  {
+    id: 'fac_tuh',
+    name: 'Tripoli University Hospital',
+    nameAr: 'مستشفى طرابلس الجامعي',
+    type: 'hospital',
+    municipality: 'Souq Al-Jumaa',
+    region: 'Tripoli',
+    services: ['Emergency', 'Cardiology', 'Oncology', 'Dialysis', 'Imaging'],
+    status: 'open',
+  },
+  {
+    id: 'fac_bmc',
+    name: 'Benghazi Medical Center',
+    nameAr: 'مركز بنغازي الطبي',
+    type: 'hospital',
+    municipality: 'Benghazi',
+    region: 'Benghazi',
+    services: ['Emergency', 'Cardiology', 'Oncology', 'Dialysis', 'Imaging'],
+    status: 'open',
+  },
+  {
+    id: 'fac_jalaa',
+    name: 'Al-Jalaa Hospital Benghazi',
+    nameAr: 'مستشفى الجلاء بنغازي',
+    type: 'hospital',
+    municipality: 'Benghazi',
+    region: 'Benghazi',
+    services: ['Emergency', 'Maternity', 'Pediatrics', 'Pharmacy'],
+    status: 'open',
+  },
+  {
+    id: 'fac_mch',
+    name: 'Misrata Central Hospital',
+    nameAr: 'مستشفى مصراتة المركزي',
+    type: 'hospital',
+    municipality: 'Misrata',
+    region: 'Misrata',
+    services: ['Emergency', 'Oncology', 'Cardiology', 'Imaging'],
+    status: 'open',
+  },
+  {
+    id: 'fac_smc',
+    name: 'Sabha Medical Center',
+    nameAr: 'مركز سبها الطبي',
+    type: 'hospital',
+    municipality: 'Sabha',
+    region: 'Fezzan',
+    services: ['Emergency', 'Maternity', 'Dialysis'],
+    status: 'limited',
+  },
+  {
+    id: 'fac_derna',
+    name: 'Derna Al-Wahda Hospital',
+    nameAr: 'مستشفى الوحدة درنة',
+    type: 'hospital',
+    municipality: 'Derna',
+    region: 'Al Jabal Al Akhdar',
+    services: ['Emergency', 'Maternity'],
+    status: 'closed',
+  },
+  {
+    id: 'fac_janzour',
+    name: 'Janzour Polyclinic',
+    nameAr: 'العيادة المجمعة جنزور',
+    type: 'clinic',
+    municipality: 'Janzour',
+    region: 'Tripoli',
+    services: ['Pediatrics', 'Maternity', 'Pharmacy'],
+    status: 'open',
+  },
+  {
+    id: 'fac_andalus_phc',
+    name: 'Hay Al-Andalus Health Center',
+    nameAr: 'مركز حي الأندلس الصحي',
+    type: 'phc',
+    municipality: 'Hay Al-Andalus',
+    region: 'Tripoli',
+    services: ['Maternity', 'Pediatrics'],
+    status: 'open',
+  },
+  {
+    id: 'fac_bayda',
+    name: 'Al-Bayda Polyclinic',
+    nameAr: 'العيادة المجمعة البيضاء',
+    type: 'clinic',
+    municipality: 'Al-Bayda',
+    region: 'Al Jabal Al Akhdar',
+    services: ['Pediatrics', 'Pharmacy'],
+    status: 'limited',
+  },
+  {
+    id: 'fac_zawiya_pharm',
+    name: 'Zawiya Central Pharmacy',
+    nameAr: 'الصيدلية المركزية الزاوية',
+    type: 'pharmacy',
+    municipality: 'Zawiya',
+    region: 'Zawiya',
+    services: ['Pharmacy'],
+    status: 'open',
+  },
+];
+
+export const MEDICINES: MedicineStock[] = [
+  {
+    id: 'med_001',
+    name: 'Insulin Glargine 100 IU/mL',
+    genericName: 'Insulin glargine',
+    availability: 'in_stock',
+    facilities: ['fac_tch', 'fac_khadra', 'fac_bmc', 'fac_zawiya_pharm'],
+  },
+  {
+    id: 'med_002',
+    name: 'Human Insulin Regular 100 IU/mL',
+    genericName: 'Insulin human (rDNA)',
+    availability: 'low',
+    facilities: ['fac_tch', 'fac_jalaa'],
+  },
+  {
+    id: 'med_003',
+    name: 'Metformin 500 mg tablets',
+    genericName: 'Metformin hydrochloride',
+    availability: 'in_stock',
+    facilities: ['fac_tch', 'fac_khadra', 'fac_janzour', 'fac_andalus_phc', 'fac_zawiya_pharm', 'fac_mch'],
+  },
+  {
+    id: 'med_004',
+    name: 'Trastuzumab 440 mg vial',
+    genericName: 'Trastuzumab',
+    availability: 'out',
+    facilities: ['fac_tuh', 'fac_bmc'],
+  },
+  {
+    id: 'med_005',
+    name: 'Hemodialysis consumables kit',
+    genericName: 'Dialyzer, lines and dialysate set',
+    availability: 'out',
+    facilities: ['fac_tch', 'fac_bmc', 'fac_smc'],
+  },
+  {
+    id: 'med_006',
+    name: 'Epoetin Alfa 4000 IU injection',
+    genericName: 'Epoetin alfa',
+    availability: 'out',
+    facilities: ['fac_tch', 'fac_smc'],
+  },
+  {
+    id: 'med_007',
+    name: 'Amoxicillin 500 mg capsules',
+    genericName: 'Amoxicillin trihydrate',
+    availability: 'in_stock',
+    facilities: ['fac_tch', 'fac_jalaa', 'fac_janzour', 'fac_zawiya_pharm', 'fac_bayda'],
+  },
+  {
+    id: 'med_008',
+    name: 'Paracetamol 500 mg tablets',
+    genericName: 'Paracetamol',
+    availability: 'in_stock',
+    facilities: [
+      'fac_tch', 'fac_khadra', 'fac_tuh', 'fac_bmc', 'fac_jalaa',
+      'fac_mch', 'fac_janzour', 'fac_andalus_phc', 'fac_zawiya_pharm',
+    ],
+  },
+  {
+    id: 'med_009',
+    name: 'Salbutamol inhaler 100 mcg',
+    genericName: 'Salbutamol sulfate',
+    availability: 'low',
+    facilities: ['fac_tch', 'fac_zawiya_pharm', 'fac_bayda'],
+  },
+  {
+    id: 'med_010',
+    name: 'Ondansetron 8 mg tablets',
+    genericName: 'Ondansetron hydrochloride',
+    availability: 'low',
+    facilities: ['fac_tuh', 'fac_bmc'],
+  },
+  {
+    id: 'med_011',
+    name: 'Amlodipine 5 mg tablets',
+    genericName: 'Amlodipine besylate',
+    availability: 'in_stock',
+    facilities: ['fac_tch', 'fac_khadra', 'fac_janzour', 'fac_zawiya_pharm', 'fac_mch'],
+  },
+  {
+    id: 'med_012',
+    name: 'Lisinopril 10 mg tablets',
+    genericName: 'Lisinopril dihydrate',
+    availability: 'low',
+    facilities: ['fac_khadra', 'fac_janzour'],
+  },
+  {
+    id: 'med_013',
+    name: 'MMR vaccine (pediatric)',
+    genericName: 'Measles, mumps and rubella vaccine',
+    availability: 'low',
+    facilities: ['fac_andalus_phc', 'fac_jalaa', 'fac_smc'],
+  },
+  {
+    id: 'med_014',
+    name: 'Pentavalent vaccine (pediatric)',
+    genericName: 'DTaP-HepB-Hib vaccine',
+    availability: 'in_stock',
+    facilities: ['fac_andalus_phc', 'fac_tch'],
+  },
+  {
+    id: 'med_015',
+    name: 'Levothyroxine 50 mcg tablets',
+    genericName: 'Levothyroxine sodium',
+    availability: 'in_stock',
+    facilities: ['fac_tch', 'fac_zawiya_pharm', 'fac_bayda'],
+  },
+];
+
+// Stored appointments carry the owning citizen's NIN internally; services
+// strip it before returning data to callers.
+export interface StoredAppointment extends Appointment {
+  nin: string;
+}
+
+export const APPOINTMENTS: StoredAppointment[] = [
+  {
+    id: 'apt_seed_001',
+    nin: DEMO_CITIZEN.nin,
+    facilityId: 'fac_tch',
+    facilityName: 'Tripoli Central Hospital',
+    department: 'Dialysis',
+    scheduledFor: daysAhead(3),
+    status: 'confirmed',
+    reference: 'APT-2026-00041',
+  },
+];

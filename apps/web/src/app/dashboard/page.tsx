@@ -1,8 +1,26 @@
+'use client';
+
+import React, { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '@/lib/auth';
+import { Spinner } from '@/components/ui';
+import { DashboardHome } from '@/components/dashboard/DashboardHome';
+
 export default function DashboardPage() {
-  return (
-    <div className="container-page py-16">
-      <h1 className="text-2xl font-bold text-ink-900">Dashboard</h1>
-      <p className="mt-2 text-ink-500">Under construction.</p>
-    </div>
-  );
+  const router = useRouter();
+  const { ready, token } = useAuth();
+
+  useEffect(() => {
+    if (ready && !token) router.replace('/login');
+  }, [ready, token, router]);
+
+  if (!ready || !token) {
+    return (
+      <div className="flex min-h-[50vh] items-center justify-center">
+        <Spinner className="h-7 w-7" />
+      </div>
+    );
+  }
+
+  return <DashboardHome />;
 }
