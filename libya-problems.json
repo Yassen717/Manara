@@ -1,0 +1,1376 @@
+{
+  "metadata": {
+    "project": "Libya GaaS (Government-as-a-Service) - citizen pain-point research",
+    "purpose": "Structured dataset of documented problems Libyan citizens face with public services, banking, utilities, healthcare, education and governance. Collected as input for designing a digital government/service-delivery platform for Libya.",
+    "collected_date": "2026-10-23",
+    "collection_method": "5 parallel research agents, ~16 web searches each (~80 searches total), English + Arabic sources",
+    "country_context": {
+      "population": "~7.5 million",
+      "political_situation": "Two rival administrations since 2014/2022: UN-recognized GNU (Tripoli, west) and GNS/Haftar-backed authorities (east)",
+      "internet_penetration": "~88.5% (2024-2025)",
+      "mobile_connections": "~197% of population",
+      "un_egdi_rank": "125/193 (EGDI 0.5466) but Online Service Index (OSI) only 0.081 - services gap, not infrastructure gap",
+      "e_participation_rank": "190/193",
+      "corruption": "TI CPI 2024: 13/100, rank 173/180"
+    },
+    "total_problems": 99,
+    "severity_counts": {"critical": 34, "high": 52, "medium": 13},
+    "domains": ["identity_civil_registry", "justice_property", "banking_payments", "salaries_social", "currency_trade", "economy_living", "electricity", "water_sanitation", "transport_infra", "telecom_internet", "housing_municipal", "healthcare", "education", "governance", "displacement"],
+    "severity_legend": ["critical", "high", "medium"],
+    "schema": {
+      "id": "LBY-### unique identifier",
+      "domain": "high-level grouping for product modules",
+      "category": "problem type",
+      "title": "short name",
+      "description": "what people actually experience",
+      "evidence": "quote / statistic / concrete example",
+      "sources": [{"name": "outlet", "url": "link", "date": "publication date or range"}],
+      "severity": "critical | high | medium",
+      "gaas_opportunity": "how a digital platform could solve or reduce it"
+    }
+  },
+  "problems": [
+    {
+      "id": "LBY-001",
+      "domain": "identity_civil_registry",
+      "category": "Civil Registry / Fraud",
+      "title": "Mass civil-registry fraud: 315,000+ unlawful national ID numbers",
+      "description": "The Attorney General's multi-year audit found >315,000 national ID numbers issued unlawfully, >10,000 passports obtained with falsified data, ~48,000 IDs granted to non-Libyans, and 64,000 numbers existing in the NID system but not the civil registry. Legitimate citizens are harmed twice: records get frozen during investigations and fraudsters siphon grants and salaries meant for families.",
+      "evidence": "AG Al-Siddiq Al-Sour (Oct 2026): 34,022 family records examined; 8,662 national IDs suspended; 1,855 passports ordered withdrawn; LYD 84.5M in salaries/pensions + USD 24.6M + LYD 3.8M in family grants frozen. 86,090 forged-ID holders drew state salaries (~LYD 208M).",
+      "sources": [
+        {"name": "The Libya Observer", "url": "https://libyaobserver.ly/news/libyas-attorney-general-reveals-315000-unlawfully-issued-national-id-numbers-citizenship-data", "date": "2026-10-13"}
+      ],
+      "severity": "critical",
+      "gaas_opportunity": "A single canonical identity ledger with biometric deduplication, immutable audit trails, and cross-registry reconciliation is the foundational GaaS investment - everything else depends on it."
+    },
+    {
+      "id": "LBY-002",
+      "domain": "identity_civil_registry",
+      "category": "Civil Registry / Corruption",
+      "title": "Open price list for forged national ID numbers",
+      "description": "Forgery of national ID numbers is an active commercial market run through complicit civil-registry employees, with region-varying prices. ~1,703 forgery cases were detected in Jan-Apr 2026 alone; fake IDs unlock voting, family grants, state jobs, and passports.",
+      "evidence": "Alwasat documented a de facto tariff: LYD 70,000 in Tripoli; 25,000 in Bani Walid; 6,000 in Tobruk; 3,000 in Msallata; 600 in Sebha; as low as 150 in Benghazi. One employee took LYD 17,000 to insert seven foreigners into a family record.",
+      "sources": [
+        {"name": "Alwasat", "url": "https://alwasat.ly/news/libya/515274", "date": "2026"}
+      ],
+      "severity": "critical",
+      "gaas_opportunity": "Role-based access control, tamper-evident logs, and mandatory biometric verification at enrollment remove the human 'insertion point' that makes forgery sellable."
+    },
+    {
+      "id": "LBY-003",
+      "domain": "identity_civil_registry",
+      "category": "Civil Registry / Data Infrastructure",
+      "title": "Civil registry data unreconciled since the 1970s",
+      "description": "Libya's electronic civil registry was never fully matched against paper records - a gap dating to the mid-1970s. The 'Intilaqa' project only reached ~97% matching of 1.8M family records across 257 offices in 2024, meaning citizens' certificates may not match the system, blocking passports, SIM cards, bank accounts, salaries, and voting.",
+      "evidence": "Libya Herald: 'the data of 1.8 million Libyan families were printed, with a completion rate of 97%... this project has not been completed since the mid-seventies.' National ID is required for SIM card, passport, bank account, preferential-rate FX, marriage and voting.",
+      "sources": [
+        {"name": "Libya Herald", "url": "https://libyaherald.com/2024/09/pm-aldabaiba-follows-up-on-intilaqa-project-for-matching-civil-registry-electronic-data-with-paper-records", "date": "2024-09"}
+      ],
+      "severity": "critical",
+      "gaas_opportunity": "Front-load citizen self-verification: let people check and correct their own records online instead of discovering mismatches at a counter."
+    },
+    {
+      "id": "LBY-004",
+      "domain": "identity_civil_registry",
+      "category": "Passports",
+      "title": "Rationed passport application forms & selective admission",
+      "description": "Paper application forms are handed out only one day a week in limited numbers at some branches, forcing repeat weekly trips and dawn queues. Inside, staff selectively admit certain names - widely read as wasta - and some offices open only two days a week.",
+      "evidence": "Mohamed bin Othman, 60: 'I went back early the next week, waited long at the window, then a limited number of forms were distributed and I wasn't among the lucky ones.' An ordeal lasting over two months. Eastern Interior Ministry disbursed emergency budget in Sept 2025 purely to expand waiting halls.",
+      "sources": [
+        {"name": "Alwasat", "url": "https://alwasat.ly/news/libya/482582", "date": "2025"},
+        {"name": "Alwasat", "url": "https://alwasat.ly/news/libya/490476", "date": "2025-09-13"}
+      ],
+      "severity": "critical",
+      "gaas_opportunity": "Online application + appointment scheduling + digital form download removes the artificial 'forms rationing' chokepoint entirely; remote first-stage processing cuts dwell time ~90%."
+    },
+    {
+      "id": "LBY-005",
+      "domain": "identity_civil_registry",
+      "category": "Passports",
+      "title": "One-year mandatory wait to replace a lost/damaged passport",
+      "description": "The Passports & Nationality Authority imposed a blanket one-year wait before reissuing lost or damaged passports, citing a surge in cases. Humanitarian exceptions go only through the central authority - another discretionary bottleneck - stranding travelers, patients, and students.",
+      "evidence": "Libya Observer: 'Libyans face year-long wait for replacements'; authority defended the rule on Facebook saying urgent cases would be referred 'to the central authority for review and decision-making.'",
+      "sources": [
+        {"name": "The Libya Observer", "url": "https://libyaobserver.ly/inbrief/passport-woes-libyans-face-year-long-wait-replacements", "date": "2024-12-08"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "Digital loss-reporting with police-report verification and risk-scored triage replaces blanket punitive delays with case-by-case adjudication."
+    },
+    {
+      "id": "LBY-006",
+      "domain": "identity_civil_registry",
+      "category": "Passports / Corruption",
+      "title": "Bribery market inside passport offices",
+      "description": "A persistent cash-for-access market operates at passport offices: guards and intermediaries sell faster-queue placement and same-day processing while the sick and elderly wait for hours. Documented since 2015; selective name-entry complaints persist in 2025 reporting.",
+      "evidence": "Libya Herald: queue-jumpers 'paying up to LD5,000' for immediate processing vs official fee of LD50.5; guards 'fighting among themselves to advance the applications of their clients.'",
+      "sources": [
+        {"name": "Libya Herald", "url": "https://libyaherald.com/2015/08/new-libyan-passport-mess-being-fixed-says-official", "date": "2015-08; pattern confirmed 2025"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "A numbered digital queue with published wait times and no human discretion over ordering eliminates the queue-selling market."
+    },
+    {
+      "id": "LBY-007",
+      "domain": "identity_civil_registry",
+      "category": "Civil Registry / Security",
+      "title": "Armed groups physically capture registry & passport offices",
+      "description": "Militias have repeatedly seized registry and passport offices to issue documents illicitly - including to foreign fighters - while kidnapping staff and killing the CRA director (2016). Physical concentration of records makes the identity system hostage to whoever controls the building.",
+      "evidence": "UN Panel of Experts: 'all Libyan parties, including Ansar al-Sharia Benghazi and Ansar al-Sharia Sirte, competed to control the Civil Registry Authority and passport administrations... to illegally issue passports, including to foreign fighters.'",
+      "sources": [
+        {"name": "Libya Herald (UN Panel of Experts S/2017)", "url": "https://libyaherald.com/2017/06/militias-and-ansar-sharia-attempt-to-control-libyan-civil-registry-to-create-fake-passports-un-report", "date": "2017-06"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "Decouple service delivery from physical offices - issuance logic + data in resilient cloud, offices as thin biometric capture points - so office seizure is useless."
+    },
+    {
+      "id": "LBY-008",
+      "domain": "identity_civil_registry",
+      "category": "Political Fragmentation",
+      "title": "Two rival governments run parallel registries and documents",
+      "description": "Since 2014-16 Libya runs duplicate state institutions: the eastern administration split off its own Civil Register Bureau and national-ID project (Al-Bayda, 2016), maintains parallel budgets, and issues documents whose recognition depends on which authority a citizen lives under.",
+      "evidence": "Eastern Civil Register Bureau announced a 'parallel ID project in Al-Bayda... to issue new National Identification numbers.' In Nov 2025 the rival bodies only just agreed to 'unify the spending mechanism' and halt 'parallel spending.'",
+      "sources": [
+        {"name": "Libyan Express", "url": "https://www.libyanexpress.com/eastern-civil-register-bureau-splits-up-from-tripoli-administration/", "date": "2016; 2025-11-18"}
+      ],
+      "severity": "critical",
+      "gaas_opportunity": "Federated architecture with a single citizen ID namespace but region-scoped service nodes lets both administrations deliver services without resolving the political question first."
+    },
+    {
+      "id": "LBY-009",
+      "domain": "identity_civil_registry",
+      "category": "Mobility",
+      "title": "Ad-hoc security clearance demanded for east-west travel",
+      "description": "Eastern authorities abruptly required Libyan citizens to obtain security clearance before flying Benghazi to Tripoli, stranding passengers holding boarding passes. Though rescinded a day later, such ad-hoc internal-movement permits recur with no unified checkable rule.",
+      "evidence": "Passengers at Benina 'were caught by surprise as they got their boarding passes but prevented by security from boarding - westerners can travel but easterners cannot unless they obtain a clearance.'",
+      "sources": [
+        {"name": "The Libya Observer", "url": "https://libyaobserver.ly/news/libyan-eastern-authorities-ask-citizens-traveling-tripoli-security-clearance", "date": "2021"}
+      ],
+      "severity": "medium",
+      "gaas_opportunity": "Public machine-readable rules registry of movement/entry requirements plus digital pre-clearance replaces airport surprise with certainty."
+    },
+    {
+      "id": "LBY-010",
+      "domain": "identity_civil_registry",
+      "category": "International Standing",
+      "title": "US travel ban cites Libya's unreliable civil documents",
+      "description": "The June 2025 US proclamation fully suspending entry for Libyan nationals explicitly cited the absence of a competent authority issuing reliable passports and civil documents - bureaucratic dysfunction elevated to a foreign-policy penalty borne by ordinary citizens.",
+      "evidence": "US proclamation 'fully suspended entry for Libyan nationals, citing the lack of a competent authority issuing passports and civil documents' (kept in force by the Dec 2025 proclamation).",
+      "sources": [
+        {"name": "Rio Times / US proclamation", "url": "https://www.riotimesonline.com/libya-315000-unlawful-national-id-numbers-2026/", "date": "2025-06"}
+      ],
+      "severity": "critical",
+      "gaas_opportunity": "Internationally verifiable document security (digital signatures, ICAO-compliant e-documents, verifiable issuance chain) is both citizen service and sovereignty repair."
+    },
+    {
+      "id": "LBY-011",
+      "domain": "identity_civil_registry",
+      "category": "Displacement",
+      "title": "IDPs blocked from registering children based on birthplace",
+      "description": "Displaced families report civil registry offices refusing to register children or complete national-ID procedures because the birth occurred in a 'rival' region - creating a growing stateless-within-their-own-country population locked out of school, healthcare, and child grants.",
+      "evidence": "Carnegie: 'the civil registry refused to register Abdelrazek or complete his citizenship and national identity procedures, citing his birth in Benghazi' - blocking 'education, healthcare, and government grants.'",
+      "sources": [
+        {"name": "Carnegie Endowment (Sada)", "url": "https://carnegieendowment.org/sada/2024/09/libya-idp-sada-documentary", "date": "2024-09"}
+      ],
+      "severity": "critical",
+      "gaas_opportunity": "Jurisdiction-agnostic digital registration - birth recorded once, valid nationwide - removes geography-based gatekeeping at local offices."
+    },
+    {
+      "id": "LBY-012",
+      "domain": "identity_civil_registry",
+      "category": "Disaster Recovery",
+      "title": "Derna flood survivors can't replace documents; no death certificates for the missing",
+      "description": "Flood-displaced survivors lost all papers and were told replacements must be issued in Derna - where offices and records were destroyed. No mechanism exists to issue death certificates for the missing, blocking widows' pensions, inheritance, and state aid.",
+      "evidence": "HRW quote: 'All of my belongings are lost, including my papers. I cannot get a passport, or ID or driver's license... because this all has to be issued in Derna.' Amnesty: 'no specific measures to facilitate the provision of death certificates for those missing.'",
+      "sources": [
+        {"name": "Human Rights Watch", "url": "https://www.hrw.org/news/2024/09/10/libya-slow-flood-recovery-failing-displaced-survivors", "date": "2024-09-10"},
+        {"name": "Amnesty International", "url": "https://www.amnesty.org/en/latest/news/2024/03/libya-ensure-full-investigations-into-responsibility-of-powerful-military-and-political-actors-over-catastrophic-derna-floods/", "date": "2024-03"}
+      ],
+      "severity": "critical",
+      "gaas_opportunity": "Anywhere-issuance + disaster-mode identity recovery (reissue from central backup after remote verification) - the most concrete resilience feature a GaaS can offer."
+    },
+    {
+      "id": "LBY-013",
+      "domain": "identity_civil_registry",
+      "category": "Gender Discrimination",
+      "title": "Libyan women married to foreigners: children denied papers",
+      "description": "Marriage licenses for Libyan women marrying foreigners have effectively been suspended since a 2013 fatwa; such marriages need committee/security approval. Undocumented marriages mean children can't get birth registration or nationality, producing statelessness inside Libya.",
+      "evidence": "Euro-Med: 'their marriage contract was not documented in the civil registry because they did not obtain approval.' HRW: children 'face difficulties including in obtaining identity documents.'",
+      "sources": [
+        {"name": "Human Rights Watch", "url": "https://www.hrw.org/news/2022/10/28/decree-libyan-womens-non-citizen-children-fails-discrimination-test", "date": "2022-10-28"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "Online application pipeline for approval committees with defined SLAs and appeal tracking removes the de facto indefinite suspension."
+    },
+    {
+      "id": "LBY-014",
+      "domain": "identity_civil_registry",
+      "category": "Document Standards",
+      "title": "Non-standardized civil documents vary by issuing office",
+      "description": "Birth, marriage and death certificates are issued in multiple different formats depending on the issuing city - no single national template - complicating verification by banks, courts, and foreign authorities. Errors require correcting the family book first, then re-issuing.",
+      "evidence": "UK Home Office: 'There are various types of birth certificates, and these vary depending on the place of issue'; likewise 'several different types of marriage certificate, depending on where they were issued.'",
+      "sources": [
+        {"name": "UK Home Office - Libya Knowledge Base", "url": "https://www.gov.uk/government/publications/libya-knowledge-base-profile/libya-knowledge-base-profile", "date": "current"}
+      ],
+      "severity": "medium",
+      "gaas_opportunity": "One national e-certificate standard with machine-verifiable QR format ends format chaos and makes every office's output instantly checkable."
+    },
+    {
+      "id": "LBY-015",
+      "domain": "identity_civil_registry",
+      "category": "Marginalized Populations",
+      "title": "Hundreds of thousands undocumented / 'undetermined legal status'",
+      "description": "Tuareg, Tebu and naturalization-pending families (up to 30% of the southern population) lost even temporary papers when the 2013 NIN system made their documents legally worthless. Without NIN they can't get SIMs, bank accounts, salaries, schooling, passports or vote.",
+      "evidence": "US State Dept 2023: 'Noncitizens without national identification numbers could not access basic services; register births, marriages, or deaths; hold certain jobs; receive state salaries; vote.'",
+      "sources": [
+        {"name": "US State Dept / Al Jazeera", "url": "https://www.aljazeera.com/news/2021/6/28/libyas-stateless-ethnic-minorities-and-an-upcoming-election", "date": "2021-2024"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "Digital case-resolution pathway for undetermined status (application, evidence upload, status tracking) - a service the paper state refuses to provide."
+    },
+    {
+      "id": "LBY-016",
+      "domain": "identity_civil_registry",
+      "category": "Diaspora / Consular",
+      "title": "Diaspora: most embassies can't issue passports",
+      "description": "For a decade+ most Libyan missions could not issue passports; photo-capture only resumed (late 2026) at six missions (Istanbul, Berlin, London, Washington, Brussels, Moscow) after pauses. Successive governments made identical unfulfilled promises; London - the largest permanent expat community - had none for years.",
+      "evidence": "Libya Herald: 'Over the last decade, successive post-Qaddafi administrations have announced their intention to start issuing passports abroad at multiple missions - without doing so.' Travel documents valid only 3 months after days-long approval from Libya.",
+      "sources": [
+        {"name": "Libya Herald", "url": "https://libyaherald.com/2021/05/foriegn-ministry-authorizes-the-installation-of-passport-issuing-systems-at-diplomatic-missions", "date": "2021-05"},
+        {"name": "Libya Herald", "url": "https://libyaherald.com/2026/10/applications-by-citizens-for-libyan-passports-at-several-embassies-resume", "date": "2026-10"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "Remote enrollment + centralized printing with courier delivery lets ANY consulate issue documents; online renewal, digital civil-registry extracts, video KYC, mail delivery."
+    },
+    {
+      "id": "LBY-017",
+      "domain": "identity_civil_registry",
+      "category": "Document Authentication",
+      "title": "No Apostille - multi-hop, multi-fee legalization chain",
+      "description": "Libya is not a Hague Apostille party, so every civil/commercial document needs a chain: notary then Ministry of Justice then Ministry of Foreign Affairs then destination consulate - with sworn translation (~$65/document) and per-document consular fees. Foreign documents need the reverse chain.",
+      "evidence": "Chain for a Libyan certificate abroad: 'translated by a sworn translator... submitted to the Libyan Ministry of Justice for verification... then MoFA... only then forwarded to the respective embassy' - ~14 days via agencies, plus fees.",
+      "sources": [
+        {"name": "Schmidt & Schmidt legalization guide / Libyan Embassy DC", "url": "https://schmidt-export.com/consular-legalization-and-apostille/legalization-libya", "date": "current practice"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "Digitally signed e-certificates with QR verification collapse the notary-MoJ-MoFA chain into one issuance step and make foreign verification instant."
+    },
+    {
+      "id": "LBY-018",
+      "domain": "justice_property",
+      "category": "Courts",
+      "title": "Slowness of justice - the #1 access-to-justice complaint",
+      "description": "The nationwide A2JiL research found 'journeys for justice are often too slow' for employment, goods/services, housing/land and marital disputes - driven by resource shortages, outdated procedure and political division. The Supreme Court selectively reviews cases and skips sensitive ones.",
+      "evidence": "Libyan Code of Criminal Procedure 'does not regulate a period for the completion of the trial.' HRW (2025): the Supreme Court 'has become unable or unwilling to review appeals in the sequence they are lodged, instead selectively reviewing cases.'",
+      "sources": [
+        {"name": "A2JiL policy brief / Human Rights Watch", "url": "https://www.libyanlawandsociety.org/images/main/Policy-Brief-Slowness-of-justice.pdf", "date": "2025"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "E-filing, case-status tracking, and automatic hearing scheduling attack delay without requiring judicial-system reform first."
+    },
+    {
+      "id": "LBY-019",
+      "domain": "justice_property",
+      "category": "Detention",
+      "title": "Mass pretrial detention; armed groups ignore court orders",
+      "description": "Court backlogs are huge; armed groups running detention facilities ignore summonses and release orders, producing years of arbitrary pretrial detention (the majority of detainees). Lawyers can't reliably access files or clients.",
+      "evidence": "HRW (June 2025): 'armed groups and quasi-state forces who control detention facilities do not always carry out release orders... the majority of detainees were held in pre-trial or pre-charge detention.'",
+      "sources": [
+        {"name": "Human Rights Watch", "url": "https://www.hrw.org/report/2025/06/02/injustice-design/need-comprehensive-justice-reform-libya", "date": "2025-06-02"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "Digital detainee registers visible to prosecutors + case tracking make ignored release orders detectable."
+    },
+    {
+      "id": "LBY-020",
+      "domain": "justice_property",
+      "category": "Land / Property",
+      "title": "Land registry: burned records, expropriations, contradictory registrations",
+      "description": "Registries were physically burned and thousands of properties expropriated since the 1970s (Law 4/1978 expropriated ~56,000-75,000 properties; only ~25,000 claims filed). Contradictory duplicate registrations persist, resolvable only through special appeals courts; displaced owners can't prove ownership remotely.",
+      "evidence": "GLTN: the law aims 'to restore... the real estate property registry after the burning of the registries and the expropriation of thousands of private properties since early 1970s.' Leiden: 'political division and armed conflict have perpetuated these disputes.'",
+      "sources": [
+        {"name": "Global Land Tool Network", "url": "https://arablandinitiative.gltn.net/sites/default/files/2023-10/docs/land-administration-and-land-rights-for-peace-and-development-in-libya_16.10.2023.pdf", "date": "2023-10"},
+        {"name": "Leiden University", "url": "https://www.universiteitleiden.nl/binaries/content/assets/rechtsgeleerdheid/instituut-voor-metajuridica/resolving-real-property-disputes-in-post-ghadaffi-libya.pdf", "date": "~2021"}
+      ],
+      "severity": "critical",
+      "gaas_opportunity": "Digitized cadastre with title search, conflict flagging, remote certified extracts and an online claims pipeline for restitution."
+    },
+    {
+      "id": "LBY-021",
+      "domain": "banking_payments",
+      "category": "Cash & Liquidity",
+      "title": "Chronic cash liquidity crisis - capped withdrawals, empty branches",
+      "description": "For years Libyans with money in the bank cannot access it: branches ration physical dinars, ATMs run dry early (only ~300-450 ATMs nationwide), and counter withdrawals are capped (LYD 1,000 in Dec 2024; LYD 3,000-4,000 caps in Aug 2026). Hundreds queue for hours outside guarded banks and cash often runs out before people are served.",
+      "evidence": "AFP: 'withdrawing money is akin to an obstacle course in which hundreds wait, often for hours, outside heavily guarded banks... the money all too often runs out early.' A 70-year-old professor 'spent more than seven hours' to withdraw 2,000 dinars; 'cash is available only two days a month.'",
+      "sources": [
+        {"name": "France 24 / AFP", "url": "https://www.france24.com/en/live-news/20241203-cash-crunch-pushes-libyans-to-bank-cards-despite-hurdles", "date": "2024-12-03"},
+        {"name": "Middle East Monitor", "url": "https://www.middleeastmonitor.com/20251225-libyas-dried-up-banks-the-daily-struggle-for-cash/", "date": "2025-12-25"},
+        {"name": "Libya Herald / CBL", "url": "https://libyaherald.com/2026/08/central-bank-source-to-libya-herald-cash-liquidity-to-reach-branches-sunday-withdrawal-limits-start-at-ld-3000-and-subject-to-increase", "date": "2026-08"}
+      ],
+      "severity": "critical",
+      "gaas_opportunity": "Digital wallet payments for salaries, bills and merchant payments bypass physical cash distribution; e-transactions already hit LYD 643B Jan-Jul 2026."
+    },
+    {
+      "id": "LBY-022",
+      "domain": "banking_payments",
+      "category": "Cash & Liquidity",
+      "title": "Overnight bank queues, protests and deadly violence over cash",
+      "description": "Cash desperation repeatedly turns dangerous: people sleep overnight at bank doors, protests erupt inside branches ('we need our money'), and crowds have been shot at. Depositors withdraw 200-300 LYD of a 1,000 LYD salary after sleeping in the open.",
+      "evidence": "Bank guards shot dead three people dispersing a queue outside North Africa Bank, Tripoli (Reuters 2016); Oct 2025 videos showed crowds of angry depositors in Tripoli and Benghazi chanting 'We need our money.'",
+      "sources": [
+        {"name": "Reuters", "url": "https://www.reuters.com/article/us-libya-security-banks/three-shot-dead-as-they-queue-for-cash-outside-tripoli-bank-official-idUSKCN0Y92N8/", "date": "2016-05"},
+        {"name": "Al-Monitor", "url": "https://www.al-monitor.com/originals/2025/10/libyans-rush-banks-amid-cash-crunch-government-print-11b-dinars-ease-crisis", "date": "2025-10"}
+      ],
+      "severity": "critical",
+      "gaas_opportunity": "Digital disbursement of entitlements + cash-out via licensed agents/e-wallets removes the dangerous physical queue as the only access point to money."
+    },
+    {
+      "id": "LBY-023",
+      "domain": "banking_payments",
+      "category": "Cash & Liquidity",
+      "title": "Mass cash hoarding outside the banking system",
+      "description": "Deep mistrust means Libyans keep savings at home - over LYD 70 billion circulates outside banks - starving banks of liquidity in a self-reinforcing loop. When old LD 5/20 notes were withdrawn in Oct 2025, hoarders bought black-market dollars rather than deposit.",
+      "evidence": "'An amount exceeding 70 billion Libyan dinars is circulating in the local market outside the banking system' - economist cited by Sada. Government resorted to printing ~$11B in dinars in 2025 to ease the crunch.",
+      "sources": [
+        {"name": "Sada Newspaper", "url": "https://sada.ly/en/al-akari-causes-and-solutions-regarding-the-circulation-of-over-70-billion-dinars-in-cash-outside-the-banking-system/", "date": "2025-10"},
+        {"name": "Al-Monitor", "url": "https://www.al-monitor.com/originals/2025/10/libyans-rush-banks-amid-cash-crunch-government-print-11b-dinars-ease-crisis", "date": "2025-10"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "Trusted digital accounts with guaranteed balances and instant transfers offer a safer store of value than cash under the mattress."
+    },
+    {
+      "id": "LBY-024",
+      "domain": "banking_payments",
+      "category": "Cash & Liquidity",
+      "title": "Certified-check economy creates two-tier pricing",
+      "description": "Because cash is king and uncashable, merchants historically charged ~50% premiums for payment by certified check, and institutions demand 'cash or certified check only' - a tax on anyone without physical dinars.",
+      "evidence": "'To buy 100 dinars of goods... some offer 150 dinars in bank certified checks' (Libya Tribune); banks raised cheque-book fees 2.5x amid the shortage.",
+      "sources": [
+        {"name": "Libya Tribune / MFW4A", "url": "https://www.mfw4a.org/news/libya-banks-raise-service-charges-amidst-cash-shortage", "date": "2017-2018; structural pattern persists"}
+      ],
+      "severity": "medium",
+      "gaas_opportunity": "Instant free/cheap digital P2P and P2M transfers eliminate the cash-vs-paper price split and stop the poor paying a liquidity premium."
+    },
+    {
+      "id": "LBY-025",
+      "domain": "banking_payments",
+      "category": "Payments Infrastructure",
+      "title": "Divided central bank & broken east-west clearing",
+      "description": "Libya ran two rival central banks (2014-2023, tensions continue). Eastern banks were cut from the RTGS clearing system in 2014 and process manually - money barely moves between regions; even within Tripoli, interbank transfers fail during crises.",
+      "evidence": "'Money cannot be transferred from two accounts in two different banks within 100 metres in Tripoli on one street' - businessman Husni Bey (Reuters 2021). Eastern banks racked up ~LD 45bn unbacked debt.",
+      "sources": [
+        {"name": "Reuters / ICG / World Bank", "url": "https://www.crisisgroup.org/rpt/middle-east-north-africa/libya/201-tanks-and-banks-stopping-dangerous-escalation-libya", "date": "2019-2021"}
+      ],
+      "severity": "critical",
+      "gaas_opportunity": "A national instant-payment layer (LYPay/OnePay rails under one national switch) restores seamless east-west-south payments regardless of institution."
+    },
+    {
+      "id": "LBY-026",
+      "domain": "banking_payments",
+      "category": "Payments Infrastructure",
+      "title": "Central-bank crises freeze salaries and payments entirely",
+      "description": "Factional struggles over the CBL repeatedly halt the clearing system: salaries go unpaid, transfers fail, ordinary transactions become impossible for weeks. The Aug-Sep 2024 crisis saw the governor flee citing militia threats and oil output collapse from 1.17 to 0.54 mbpd.",
+      "evidence": "Reuters: 'many ordinary transactions appear to be impossible and many state salaries remain unpaid... the clearing system isn't working.' Militias allegedly abducted bankers' relatives to force cooperation.",
+      "sources": [
+        {"name": "Reuters", "url": "https://www.reuters.com/world/africa/libyas-bank-crisis-disrupts-many-state-salaries-deepens-hardship-2024-09-03/", "date": "2024-09"},
+        {"name": "Reuters/FT", "url": "https://www.reuters.com/world/africa/libya-central-bank-governor-flees-fear-his-life-ft-says-2024-08-30/", "date": "2024-08-30"}
+      ],
+      "severity": "critical",
+      "gaas_opportunity": "A neutral, technocratic digital payments layer with transparent treasury workflows reduces factions' ability to hold citizen payments hostage."
+    },
+    {
+      "id": "LBY-027",
+      "domain": "banking_payments",
+      "category": "Payments Infrastructure",
+      "title": "E-payment surge strains fragile infrastructure - system crashes",
+      "description": "E-payments grow explosively (121.65M transactions; POS +92% YoY) but infrastructure lags: a record 2M transactions in a single day crashed the national system (May 2026), and bank outages before Eid stranded shoppers. Libya needs ~250,000 POS terminals but has ~72-124k.",
+      "evidence": "Libya Herald: 'two million POS transactions in a single day across 67,000 points cause collapse of e-payment system - CBL apologises.' Misrata Chamber: 'power cuts leading to poor internet service have reduced the effect of this drive.'",
+      "sources": [
+        {"name": "Libya Herald", "url": "https://libyaherald.com/2026/05/two-million-pos-transactions-in-a-single-day-across-67000-points-cause-collapse-of-e-payment-system-cbl-apologises", "date": "2026-05"},
+        {"name": "Libya Herald", "url": "https://libyaherald.com/2024/12/use-of-card-and-e-payments-on-the-increase-helping-to-resolve-libyas-bank-cash-liquidity-problem", "date": "2024-12"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "A resilient national payment core with offline-capable/queued transactions (QR/voucher codes, USSD) and capacity stress-testing is essential GaaS infrastructure."
+    },
+    {
+      "id": "LBY-028",
+      "domain": "banking_payments",
+      "category": "Payments Infrastructure",
+      "title": "Sparse acceptance network; 10-year interoperability delay",
+      "description": "Card acceptance is thin - few ATMs, many vendors without terminals, rural areas uncovered - and for a decade competing card switches (Tadawul vs state Moamalat) weren't interoperable, fragmenting the market until Nov 2024.",
+      "evidence": "AFP: 'There are few ATM machines and many vendors do not accept card payments.' Tadawul-Moamalat interlink came 'after a ten-year effort' (Nov 2024). National totals: ~72,769 POS, 4.75M cards, 3.1M app users for 7.4M people.",
+      "sources": [
+        {"name": "AFP / Libya Herald", "url": "https://libyaherald.com/2024/11/tadawul-and-moamalat-card-payment-switch-networks-linked-for-interchangeable-use-by-customers", "date": "2024-11"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "QR-based/agent-assisted acceptance leapfrogs POS scarcity - a smartphone wallet works where no terminal exists and onboards informal merchants."
+    },
+    {
+      "id": "LBY-029",
+      "domain": "banking_payments",
+      "category": "Financial Inclusion",
+      "title": "Two-thirds of adults effectively unbanked; accounts are wage mailboxes",
+      "description": "~3.5 million Libyan adults lack any financial account (~67%), and most who have one use it only to (try to) receive salaries. Private-sector credit is ~17.7% of GDP; only 2% of firms have bank loans.",
+      "evidence": "World Bank Findex 2024: 3.52M adults without an account of 5.26M. 'Most are limited to receiving wages with very little financial intermediation. Savings and borrowing... predominantly informal.'",
+      "sources": [
+        {"name": "World Bank Findex / Financial Sector Review", "url": "https://digitalfinance.worldbank.org/country/libya", "date": "2020/2024"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "Mobile-first wallets with e-KYC (national ID + phone) give the unbanked a formal account, payment history, and eventually micro-savings/credit."
+    },
+    {
+      "id": "LBY-030",
+      "domain": "banking_payments",
+      "category": "Remittances",
+      "title": "Remittances out are near-impossible; hawala dominance",
+      "description": "~2.1M foreign workers and Libyans alike can barely send money abroad legally - Western Union/MoneyGram branches serve ~20 customers a day with erratic hours - so most use hawala/black-market exchangers at parallel rates.",
+      "evidence": "IOM DTM: '99% of migrants interviewed in Libya were unbanked'; 58% of remitters use informal hawala; 83% wanted to send but only ~29-33% succeeded.",
+      "sources": [
+        {"name": "IOM DTM Remittance Study", "url": "https://dtm.iom.int/sites/g/files/tmzbdl1461/files/reports/DTM_LBY_RemittancesStudy_0.pdf", "date": "2021 (survey 2019-20)"}
+      ],
+      "severity": "medium",
+      "gaas_opportunity": "Licensed digital remittance corridors (wallet-to-WU/MoneyGram, exchange companies) formalize hawala flows."
+    },
+    {
+      "id": "LBY-031",
+      "domain": "banking_payments",
+      "category": "Security & Trust",
+      "title": "Cash logistics under armed threat: heists, militia pressure on bankers",
+      "description": "Moving physical cash is dangerous - armored cars are ambushed (millions stolen), branches face armed pressure, and in Aug 2024 the CBL governor fled after militias allegedly abducted bankers' relatives.",
+      "evidence": "Feb 2026: gunmen robbed an Aman Bank cash vehicle (civilian Toyota, no escort) near Ryayna; Kabir: 'Militias are threatening and terrifying bank staff and are sometimes abducting their children.'",
+      "sources": [
+        {"name": "Libya Observer / Sahara Reporters / Reuters", "url": "https://libyaobserver.ly/crimes/aman-bank-cash-robbed-during-unsecured-transfer-western-libya", "date": "2026-02"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "Every dinar moved digitally is a dinar not on a truck - digital salary/social payments shrink the violent cash-logistics attack surface."
+    },
+    {
+      "id": "LBY-032",
+      "domain": "salaries_social",
+      "category": "Payroll",
+      "title": "Routine public-sector salary delays of 1-2 months",
+      "description": "Most working Libyans are state employees whose salaries routinely arrive 1-2 months late, worse during fiscal crises. The wage bill (~54% of spending, ~30% of GDP - world's heaviest) is frequently uncovered when oil revenue transfers stall; Nov 2024 required a LYD 5.3bn loan for October payroll.",
+      "evidence": "'The payment of state-sector salaries is routinely late by one or two months' (Libya Herald). Nov 2024: salaries for ~2.3M public employees delayed.",
+      "sources": [
+        {"name": "Libya Herald / Atalayar / UNSMIL", "url": "https://www.atalayar.com/en/articulo/economy-and-business/libyas-wage-crisis-exposes-authorities-inability-to-ensure-financial-stability/20241201160000208064.html", "date": "2024-12 / 2025-08"}
+      ],
+      "severity": "critical",
+      "gaas_opportunity": "Payroll rail (like CBL's 'Instant Salary' system, Aug 2025) automates disbursement, gives workers payment-status visibility, decouples paydays from discretionary treasury releases."
+    },
+    {
+      "id": "LBY-033",
+      "domain": "salaries_social",
+      "category": "Payroll",
+      "title": "Years-long unpaid salaries for post-2014 contract employees",
+      "description": "Tens of thousands of public workers hired after 2014 waited years for a first salary, trapped in verification across Finance, Civil Service and oversight bodies; releases come in sporadic batches after political pressure.",
+      "evidence": "Sept 2023: Finance Ministry released stalled salaries for 23,492 education employees - only part of 53,214 stalled contracts identified; ACA gave ministries a 2-month deadline (June 2025) to clear backlogs.",
+      "sources": [
+        {"name": "The Libya Observer / Alwasat", "url": "https://ar.libyaobserver.ly/article/25350", "date": "2023-09 / 2025-06"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "Unified digital civil-service registry tied to national ID and payroll ends multi-year limbo and makes arrears auditable."
+    },
+    {
+      "id": "LBY-034",
+      "domain": "salaries_social",
+      "category": "Payroll Fraud",
+      "title": "Ghost workers and payroll fraud drain the budget",
+      "description": "The bloated payroll is riddled with fraud: 412,687 fake NIDs on defence payrolls (incl. claimants 'born in 1900'), 94,294 salary duplications, 17,000 salaries suspended in 2020 (6,915 for deceased people), individuals drawing from 2-8 jobs. Over 100,000 duplicate IDs removed, saving ~LD 5bn/year.",
+      "evidence": "Libya Herald: Audit Bureau 'discovered a staggering 412,687 false National ID Numbers.' Finance Ministry suspended '17,000 state-sector salaries - 6,915 of which were for deceased claimants.' AG: 86,090 citizens receiving salaries on forged IDs.",
+      "sources": [
+        {"name": "Libya Herald (Audit Bureau/ACA)", "url": "https://libyaherald.com/2020/09/finance-ministry-suspends-17000-state-sector-salaries-6915-of-which-were-for-deceased-claimants", "date": "2015-2020"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "Biometric/NID-verified payroll with periodic liveness re-verification eliminates ghosts at source and frees budget for real workers."
+    },
+    {
+      "id": "LBY-035",
+      "domain": "salaries_social",
+      "category": "Pensions",
+      "title": "Pensioners: ~LYD 900/month, late payments, frozen increases",
+      "description": "Over half a million pensioners survive on ~LYD 900/month - below the cost of a basic basket (LYD 1,097) - with payments delayed weeks or months, payment cards stopping, and a legally-mandated increase frozen for lack of funding (~LYD 6.5bn/year needed).",
+      "evidence": "Al-Wasat 2025: 'Most pensioners receive about 900 dinars per month, which does not equal the minimum cost of living'; pensioners 'wait weeks, sometimes months.' Social Solidarity Fund audit found ~LYD 1bn allocated with no central beneficiary registry.",
+      "sources": [
+        {"name": "Al-Wasat / Sada", "url": "https://sada.ly/en/one-billion-dinars-with-no-social-impact-financial-and-administrative-irregularities-hit-the-social-solidarity-fund-and-disrupt-pension-payments/", "date": "2025-08/11"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "National beneficiary registry + digital pension disbursement delivers pensions on schedule and kills duplicate/ghost pensions."
+    },
+    {
+      "id": "LBY-036",
+      "domain": "salaries_social",
+      "category": "Social Payments",
+      "title": "Family allowance paid erratically; quarters skipped entirely",
+      "description": "The wife-and-children grant (LYD 100/child, LYD 150/wife monthly) is disbursed in irregular quarterly batches; entire quarters (Q3, Q4 2024) were skipped, triggering public anger and calls for prosecution. 23,000 fake beneficiaries took LYD 7M in 3 months.",
+      "evidence": "Al Sabaah: citizens 'expressed their discontent at not receiving their dues... for the third and fourth quarters of 2024'; AG probe found '23,000 beneficiaries at a value of more than LD 7 million, in just 3 months, who are not registered in the Civil Registry.'",
+      "sources": [
+        {"name": "Al Sabaah / Libya Herald (AG)", "url": "https://alsabaah.ly/", "date": "2025-02 / 2022-08"}
+      ],
+      "severity": "medium",
+      "gaas_opportunity": "Automated monthly entitlement payments to verified family wallets - exactly the mechanism the IMF recommends for subsidy-compensation transfers."
+    },
+    {
+      "id": "LBY-037",
+      "domain": "currency_trade",
+      "category": "FX",
+      "title": "Dual exchange rates: parallel market ~50%+ above official",
+      "description": "Ordinary Libyans and small businesses cannot buy dollars at the official rate, so a parallel market sets real prices ~50%+ above official, inflating the cost of everything imported (most of what people buy). Two devaluations in under a year (Apr 2025 -13.3%; Jan 2026 -14.7%) failed to close the gap.",
+      "evidence": "Oct 2026: parallel rate hit LYD 9.99/$ vs official ~6.43 (~55% premium). CBL data: FX use >$20bn vs ~$15bn oil revenue - a ~$5bn gap.",
+      "sources": [
+        {"name": "Libya Economy Journal / Reuters", "url": "https://www.reuters.com/markets/currencies/libya-devalues-currency-first-time-four-years-2025-04-06/", "date": "2025-04 / 2026-10"}
+      ],
+      "severity": "critical",
+      "gaas_opportunity": "Transparent digital FX-allocation platform (booking, quotas, e-KYC - like CBL's fcms.cbl.gov.ly scaled) shrinks the black-market premium via legitimate dollar access."
+    },
+    {
+      "id": "LBY-038",
+      "domain": "currency_trade",
+      "category": "FX",
+      "title": "Shrinking personal FX allowance locks citizens out of hard currency",
+      "description": "The annual per-citizen dollar allowance collapsed from $10,000 (2020) to $4,000 (2024) to $2,000 (initial 2026 disbursement), pushing students, patients and travellers to the black market. Access requires valid national ID, passport, matching phone number and bank account - excluding many.",
+      "evidence": "Libya had no legal dollar cash imports for ~15 years until Jan 2026 ($600M/month approved). Relaunch at $2,000 initial via exchange offices.",
+      "sources": [
+        {"name": "Jumhouria Bank / Libya Herald", "url": "https://libyaherald.com/2026/01/for-the-first-time-in-15-years-libya-receives-international-approval-to-import-dollars-in-cash", "date": "2026-01"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "Deliver the personal-allowance system end-to-end (ID-verified booking, digital payout to card/e-wallet) without branch queues."
+    },
+    {
+      "id": "LBY-039",
+      "domain": "currency_trade",
+      "category": "FX",
+      "title": "Counterfeit and Russian-printed dinars flood the east",
+      "description": "Unofficial banknotes - some printed by Russia's Goznak for eastern authorities, some printed illicitly inside Libya - circulate via black market and local banks, devaluing the dinar and forcing confusing note-withdrawal exercises on citizens.",
+      "evidence": "CBL found >3.5 billion dinars of counterfeit 50-dinar notes (June 2025); $1.1bn of Goznak-printed notes seized in Malta (2020); notes 'changed into hard currency on the black market or through local banks.'",
+      "sources": [
+        {"name": "LANA / Reuters", "url": "https://www.reuters.com/markets/currencies/illicit-banknotes-east-libya-some-made-by-russia-hit-dinar-2024-07-24/", "date": "2020-2025"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "Digitizing money movement reduces exposure to counterfeit notes and unifies 'whose dinar counts' in a single digital ledger."
+    },
+    {
+      "id": "LBY-040",
+      "domain": "currency_trade",
+      "category": "Trade Finance",
+      "title": "Letters of credit: opaque, slow, monopolized by the connected",
+      "description": "The CBL's LC approval process is slow and non-transparent; big firms monopolize allocations while small importers are forced onto the black market - raising prices for everyone and clogging ports when rules tighten (Oct 2025: small traders protested at CBL over Decision 42).",
+      "evidence": "US State Dept: 'slow and non-transparent process for L/C approval... most firms use European banks.' Importers admit 'a significant portion of goods is financed through the parallel market.' LCs = >$9bn, ~half of FX use.",
+      "sources": [
+        {"name": "US State Dept / Libya Herald", "url": "https://libyaherald.com/2025/10/small-importers-demonstrate-against-complicated-banking-procedures-disrupting-market-activity-and-raising-prices-cbl-holds-meeting-with-them", "date": "2024-07 / 2025-10"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "Digital trade-finance portal (application tracking, transparent allocation rules, e-docs) democratizes LC access for SMEs."
+    },
+    {
+      "id": "LBY-041",
+      "domain": "currency_trade",
+      "category": "FX",
+      "title": "Parallel-market FX dealing moves to WhatsApp - enforcement whack-a-mole",
+      "description": "Currency trading thrives in unlicensed shops and encrypted WhatsApp groups publishing parallel rates; crackdowns on the Souq al-Mushir market repeatedly fail as traders return, while the CBL scrambles to license 400+ exchange bureaux at ~7% margin.",
+      "evidence": "CBL governor demanded closures of unlicensed offices and 'applications and WhatsApp groups' used for speculation; 'previous attempts have proved unsuccessful.'",
+      "sources": [
+        {"name": "Libya Observer / Menas", "url": "https://libyaobserver.ly/economy/central-bank-calls-closure-unlicensed-exchange-offices-prosecution-currency-speculators", "date": "2025-10/11"}
+      ],
+      "severity": "medium",
+      "gaas_opportunity": "Bringing licensed exchange onto a supervised digital platform with real rate transparency erodes the WhatsApp black market's advantage."
+    },
+    {
+      "id": "LBY-042",
+      "domain": "economy_living",
+      "category": "Subsidies",
+      "title": "Fuel subsidies ~$17-20bn/yr feed industrial-scale smuggling",
+      "description": "Fuel prices unchanged since the 1970s (LYD 0.15/litre, world's cheapest) cost the state ~$17bn/yr (35% of GDP incl. electricity) while ~30-40% of imported fuel is smuggled abroad - ~$6.7bn/yr, ~$20bn over 2022-24 - so citizens still face queues and shortages while criminal networks profit.",
+      "evidence": "IMF: 'fuel prices have not changed since the 1970s... lowest in the world.' The Sentry via Guardian: 'state-sanctioned fuel smuggling between 2022 and 2024 cost the Libyan people about $20bn.' 490 fuel stations closed for smuggling involvement.",
+      "sources": [
+        {"name": "IMF Selected Issues 25/149", "url": "https://www.imf.org/-/media/files/publications/cr/2025/english/1lbyea2025002-print-pdf.pdf", "date": "2025-05"},
+        {"name": "The Guardian / The Sentry", "url": "https://theguardian.com/world/2025/nov/12/state-sanctioned-fuel-smuggling-cost-libya-20bn-over-three-years-report", "date": "2025-11"}
+      ],
+      "severity": "critical",
+      "gaas_opportunity": "The IMF explicitly recommends replacing subsidies with direct cash transfers - a GaaS citizen-registry + payment rail is the delivery mechanism; NID-linked subsidy smart cards make diversion visible."
+    },
+    {
+      "id": "LBY-043",
+      "domain": "economy_living",
+      "category": "Fuel Supply",
+      "title": "Kilometre-long petrol queues; multi-day diesel waits",
+      "description": "Despite Africa's biggest oil reserves, motorists queue for hours/days: 2-3 km lines in Tripoli, 350 cars in one queue, 5-hour waits, truckers waiting 2-3 days. Stations without generators can't pump during blackouts - power cuts and fuel shortages compound each other. Libya produces only ~a third of domestic fuel needs; NOC owes ~$1bn to suppliers.",
+      "evidence": "Reuters/Zawya: 'Petrol queues... can now stretch up to two kilometres'; Al Wasat: Janzour queue '>3 kilometres'; black-market diesel hit LYD 11/litre vs 0.15 subsidised (73x).",
+      "sources": [
+        {"name": "Reuters / Al Wasat / Xinhua", "url": "https://alwasat.ly/news/480108", "date": "2025-2026 recurring"}
+      ],
+      "severity": "critical",
+      "gaas_opportunity": "Station-level fuel-availability map + queue reporting; e-queue/reservation slots; transparent per-station allocation data to fight smuggling."
+    },
+    {
+      "id": "LBY-044",
+      "domain": "economy_living",
+      "category": "Household Energy",
+      "title": "Cooking-gas cylinder shortages; extreme south-north price gap",
+      "description": "On-and-off cylinder shortages since 2011 force families onto the black market: a cylinder refilled in the north for LYD 1.5-3 retails for 'tens, and at times, hundreds of dinars' in the south. Brega runs an e-registration tied to National ID + mobile - an early functioning GaaS-style service.",
+      "evidence": "Libya Herald: 'in the south... a gas cylinder... can retail for tens, and at times, hundreds of dinars'; Ramadan 2026: cylinders at 75+ dinars. July 2022: long queues at cylinder depots nationwide.",
+      "sources": [
+        {"name": "Libya Herald / AFP", "url": "https://libyaherald.com/2026/09/bregas-al-hani-cooking-gas-cylinder-filling-depot-to-raise-its-capacity-to-25000-per-day", "date": "2022-07 / 2026"}
+      ],
+      "severity": "medium",
+      "gaas_opportunity": "Extend Brega's ID-linked booking into a national cylinder reservation/delivery-notification system with published per-region allocation."
+    },
+    {
+      "id": "LBY-045",
+      "domain": "economy_living",
+      "category": "Cost of Living",
+      "title": "Basic basket LYD 1,097/month and climbing ~10%/yr; rationed shelves",
+      "description": "The minimum expenditure basket reached LYD 1,096.82 (Nov 2025), up ~9.9% YoY - exceeding many salaries and most pensions. Eggs tripled to 24 dinars/carton; cooking oil doubled; most Tripoli ATMs out of cash during Ramadan 2026; supermarkets rationed goods. Protests met with live fire (Feb 2026).",
+      "evidence": "WFP Nov 2025: national MEB +9.9% YoY; Al Khums +42.6% spike; 'persistently high food and non-food prices... alongside continued liquidity constraints.' Official CPI understates reality (IMF).",
+      "sources": [
+        {"name": "WFP Libya Market Price Monitoring", "url": "https://reliefweb.int/attachments/31566571-c511-492d-878f-cc9326d97f1e/WFP%20Libya%20Market%20Price%20Monitoring%20-%20November%202025.pdf", "date": "2025-11"},
+        {"name": "AFP/Africanews", "url": "https://www.africanews.com/2026/02/23/ramadan-celebrations-in-libya-tempered-by-soaring-prices-and-shortage-of-fuel/", "date": "2026-02"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "Targeted digital cash transfers, price-transparency tools, and e-vouchers cushion households; real digital price data beats the broken CPI."
+    },
+    {
+      "id": "LBY-046",
+      "domain": "economy_living",
+      "category": "Labor",
+      "title": "Youth unemployment ~51%; jobs via connections not merit",
+      "description": "Over half of Libyans aged 15-24 are unemployed (up to ~100% in parts of the south); the state employs 85-89% of workers, and the private sector is mostly informal micro-enterprises. Job-seekers cite no vacancies (45%), lack of connections/nepotism (32%), and no funding to start a business (85%).",
+      "evidence": "UNICEF 2023: 51.4% youth unemployment, 'one of the highest of any country in the world'; World Bank: overall unemployment 19.6% (2022); >50% of the economy informal.",
+      "sources": [
+        {"name": "UNICEF MENA / IOM / BMZ", "url": "https://www.unicef.org/mena/reports/employability-study-youth-and-adolescents-libya", "date": "2023-2025"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "Transparent digital job matching, SME e-licensing, and micro-grant/credit disbursement attack nepotism and the funding barrier simultaneously."
+    },
+    {
+      "id": "LBY-047",
+      "domain": "electricity",
+      "category": "Power Supply",
+      "title": "Chronic daily load-shedding / blackouts (6-20+ hours)",
+      "description": "Tripoli residents experience multiple daily cuts totalling ~12h typical, up to 36-40h in peak summer/winter; generation ~4,500-5,800 MW vs demand 7,000-8,000 MW. Families lose refrigerated food, sleep on rooftops in 48C heat, businesses run diesel generators around the clock.",
+      "evidence": "Clingendael: outages 'up to 40 hours at a time in peak summer and winter'; 2026 crisis: 'outages lasting between 14 and 20 hours a day'; Reuters: Tripoli cuts up to 36h; a restaurant owner lost ~$40,000.",
+      "sources": [
+        {"name": "Al Jazeera", "url": "https://www.aljazeera.com/news/2021/8/29/war-weary-libyans-yearn-for-end-to-daily-blackouts", "date": "2021-08-29"},
+        {"name": "Reuters", "url": "https://www.reuters.com/business/energy/libya-power-cuts-push-small-businesses-weary-citizens-brink-2026-09-17/", "date": "2026-09"},
+        {"name": "Al Jazeera", "url": "https://www.aljazeera.com/economy/2026/7/29/libya-electricity-blackout-protests-expose-countrys-failing-grid", "date": "2026-07-29"}
+      ],
+      "severity": "critical",
+      "gaas_opportunity": "Crowdsourced outage map + official load-shedding schedules pushed by SMS/app restore predictability and create an accountability data trail on GECOL."
+    },
+    {
+      "id": "LBY-048",
+      "domain": "electricity",
+      "category": "Civil Unrest",
+      "title": "Power cuts spark riots, storming of parliament and substations",
+      "description": "Outages repeatedly trigger nationwide protests: July 2022 protesters torched the Tobruk parliament chanting 'we want the lights to work'; 2026 protesters stormed Tripoli substations; GECOL warned unauthorized restorations risk total grid collapse.",
+      "evidence": "AFP: 'electricity cuts of up to 18 hours a day' during July 2022 protests; 2026: protesters 'forced their way into power stations and substations', explosion at Substation 16.",
+      "sources": [
+        {"name": "France 24 / AFP / Middle East Online", "url": "https://www.france24.com/en/live-news/20220714-libyans-at-boiling-point-amid-summer-power-cuts", "date": "2022-07-14 / 2026"}
+      ],
+      "severity": "critical",
+      "gaas_opportunity": "Transparent grievance + restoration-ETA channel (ticket IDs, crew ETAs) offers a non-violent outlet for frustration."
+    },
+    {
+      "id": "LBY-049",
+      "domain": "electricity",
+      "category": "Asset Protection",
+      "title": "Grid and fiber repeatedly knocked out by uncoordinated digging",
+      "description": "Construction crews repeatedly sever high-voltage cables and fiber because there is no system to check what's underground before digging. July 2025 Janzour: 220 kV line cut, 8h blackout. Sept 2025 Airport Road: 30 kV cut, total western-Libya blackout + substation fire. Oct 2023: one 4.5km dig cut the 40Gbps Misrata-Tripoli link.",
+      "evidence": "GECOL: damage by 'unauthorised excavation' repeatedly occurs 'without an effective deterrent'; Sept 2025 strike caused 'a total loss of power supply' plus substation fire.",
+      "sources": [
+        {"name": "Libya Herald / Libya Observer", "url": "https://libyaherald.com/2025/07/power-restored-after-wide-and-long-power-cuts-in-tripoli-as-contractors-cut-main-power-line-mufti-condemns-power-cut-gecol-calls-on-ag-to-investigate", "date": "2023-10 / 2025"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "A 'dial-before-you-dig' permit API showing mapped utility corridors (power + fiber) - the single highest-ROI digital fix found."
+    },
+    {
+      "id": "LBY-050",
+      "domain": "electricity",
+      "category": "Utility Finance",
+      "title": "GECOL financial collapse: 13% collection rate, bills ignored",
+      "description": "Post-2011, bill-payment culture collapsed; many citizens have never received or paid a bill. Tariffs ($0.028/kWh) cover ~13% of operating cost; illegal connections and meter-reader attacks are common, starving GECOL of maintenance funds (LD 1.7bn annual losses).",
+      "evidence": "UNDP: 'revenue collection... is now about 13% of the operating cost'; World Bank flags 'dramatic rise in commercial losses and bad debt.'",
+      "sources": [
+        {"name": "UNDP LESST report / World Bank / Libya Herald", "url": "https://mptf.undp.org/sites/default/files/documents/2023-05/2022_narrative_report_libya_lesst.pdf", "date": "2022"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "Digital billing + mobile payment (bills, arrears, new connections) turns non-payment into maintenance funding - the core utility GaaS use case."
+    },
+    {
+      "id": "LBY-051",
+      "domain": "electricity",
+      "category": "Household Economy",
+      "title": "Generator economy burden on households and SMEs",
+      "description": "Anyone who can afford it buys a private generator ($470-$5,000); black-market diesel hit LYD 11/litre vs 0.15 subsidised. Businesses spend up to LYD 10,000 (~$1,600)/day; generator fumes drive respiratory illness.",
+      "evidence": "Reuters/Zawya: bakery owner spends ~$1,600/day; 'black-market diesel as high as 11 Libyan dinars per litre... compared with a subsidised price of 0.15 dinars.'",
+      "sources": [
+        {"name": "Reuters via Zawya", "url": "https://www.zawya.com/en/economy/libya-power-cuts-push-small-businesses-and-weary-citizens-to-brink-923179", "date": "2026-09"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "Coordinate neighborhood microgrid/generator sharing, subsidised-diesel e-vouchers, and outage-based billing credits."
+    },
+    {
+      "id": "LBY-052",
+      "domain": "electricity",
+      "category": "Critical Facilities",
+      "title": "Hospitals crippled by outages; dialysis deaths",
+      "description": "Blackouts shut down ventilators, vaccine cold chains, dialysis machines and incubators. Two dialysis patients died when machines lost power (2017); UNICEF installed solar at 30 clinics because 'severe power outages' made care impossible; power cuts knock out ATMs/POS, undermining the e-payment push.",
+      "evidence": "UNDP: 'two kidney dialysis patients died when the electricity cut out'; Al Kufra: 'near-daily electricity outages... interruptions of several days' at 45-47C.",
+      "sources": [
+        {"name": "UNDP via Thomson Reuters Foundation / UNICEF / WHO EMRO", "url": "http://news.trust.org/item/20171203192451-95hak", "date": "2017 / 2024-2026"}
+      ],
+      "severity": "critical",
+      "gaas_opportunity": "Priority-outage tier for registered critical facilities + remote monitoring of backup power/fuel at hospitals."
+    },
+    {
+      "id": "LBY-053",
+      "domain": "water_sanitation",
+      "category": "Water Supply",
+      "title": "Man-Made River grid-dependency: one blackout = no water for millions",
+      "description": "The GMMR supplies ~1M m3/day of groundwater to coastal cities but depends entirely on electricity. A single grid trip takes dozens of wells offline - July 2026: all 92 active Sarir wells (611,000 m3/day) shut down; August 2026: total system shutdown from Hasawna to Tripoli cutting water to ~3M people.",
+      "evidence": "MMRA: outage 'resulted in the shutdown of 92 active wells at the Sarir field with a combined daily production capacity of 611,000 cubic meters.'",
+      "sources": [
+        {"name": "Libya Analysis / Libya Herald", "url": "https://libyaanalysis.substack.com/p/22-july-2026-libya-faces-electricity", "date": "2026-07-22"},
+        {"name": "Libya Herald", "url": "https://libyaherald.com/2026/08/manmade-river-authority-water-begins-to-flow-after-return-of-electricity", "date": "2026-08"}
+      ],
+      "severity": "critical",
+      "gaas_opportunity": "Real-time water-supply status dashboard + SMS alerts when wells trip; digital rationing schedules so neighborhoods know their supply window."
+    },
+    {
+      "id": "LBY-054",
+      "domain": "water_sanitation",
+      "category": "Infrastructure Security",
+      "title": "Water used as a weapon - armed groups shut off supply to millions",
+      "description": "Militias repeatedly storm control stations (Shuwerif, Hasawna) and force workers to close valves, cutting water to Tripoli and western cities to extort prisoner releases. 64 attacks on the GMMR documented 2013-2018; 96 of 366 wells already out of service by 2019.",
+      "evidence": "OCHA (May 2019): shutdown cut supply to 'hundreds of thousands', 1.5M reliant incl. 600,000 children; Reuters (Apr 2020): 'supply cut to more than 2 million people'; could deprive 'over 4 million people, about two thirds of Libya's population.'",
+      "sources": [
+        {"name": "UN OCHA", "url": "https://www.unocha.org/publications/report/libya/un-humanitarian-coordinator-libya-strongly-condemns-blockage-great-man-made-river", "date": "2019-05-20"},
+        {"name": "Al Jazeera", "url": "https://www.aljazeera.com/news/2019/5/21/libya-armed-group-cuts-off-water-supply-to-tripoli", "date": "2019-05-21"}
+      ],
+      "severity": "critical",
+      "gaas_opportunity": "Incident-reporting + public transparency layer documenting shutdowns/actors; remote valve monitoring and SCADA alerting for unauthorized intervention."
+    },
+    {
+      "id": "LBY-055",
+      "domain": "water_sanitation",
+      "category": "Household Cost",
+      "title": "Trucked-water market price-gouging during shortages",
+      "description": "When supply fails, families buy from private tanker trucks at inflated prices: Tobruk LYD 120 for a 55-barrel truck lasting <10 days (against 200-300 dinar monthly cash withdrawals); Bani Walid prices doubled to LYD 70; Sabha LYD 20 per 1,000 litres weekly.",
+      "evidence": "Tobruk resident: 'How can we buy a 55-barrel water truck for 120 dinars when it doesn't last 10 days?'; Zintan: trucked water reaches 'less than 50% of Zintan's 60,000 residents' via a 1970s network.",
+      "sources": [
+        {"name": "Al Wasat / The Arab Weekly / SciDev.Net", "url": "https://thearabweekly.com/libya-chaos-leaves-city-residents-struggling-water", "date": "2019-2025"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "Regulated water-truck dispatch marketplace with published prices and digital vouchers kills gouging."
+    },
+    {
+      "id": "LBY-056",
+      "domain": "water_sanitation",
+      "category": "Water Quality",
+      "title": "Drinking-water salinity and contamination",
+      "description": "Overpumping drives seawater into coastal aquifers: Suani wellfield TDS exceeds 10,000 mg/l; ~70% of Tajoura wells are saline-affected. Zintan lacks a sewer system - septic tanks pollute groundwater, causing recurring hepatitis C in children.",
+      "evidence": "Hydrogeology Journal: Suani 'dissolved-solids content now exceeds 10,000 mg/l'; Arab Weekly: 'regular hepatitis C diagnoses, especially among children.'",
+      "sources": [
+        {"name": "Springer Hydrogeology Journal / The Arab Weekly", "url": "https://link.springer.com/article/10.1007/s100400050070", "date": "study/2019-2021"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "Publish neighborhood water-quality test results; let citizens request lab testing or flag contamination routed to the water utility."
+    },
+    {
+      "id": "LBY-057",
+      "domain": "water_sanitation",
+      "category": "Sewage",
+      "title": "~500,000 m3/day of raw sewage pumped into the sea",
+      "description": "Tripoli discharges ~half a million cubic metres of sewage daily through 42 outfalls, mostly onto city beaches. Of three planned treatment plants, two were looted/stolen; the surviving Hadba plant runs at one-third capacity. Health ministry warns against swimming.",
+      "evidence": "Tripoli mayor: 'Over 500,000 m3 of daily sewage pour into 42 exits... two [treatment systems] were stolen'; seawater samples 'proved to have high contamination percentage due to human waste and medical waste.'",
+      "sources": [
+        {"name": "The Libya Observer", "url": "https://libyaobserver.ly/life/tripoli-mayor-contamination-tripoli-beaches-national-security-issue", "date": "2019"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "Citizen beach/outfall pollution reports + published water-quality bulletins; track restarted Hadba plant milestones publicly."
+    },
+    {
+      "id": "LBY-058",
+      "domain": "water_sanitation",
+      "category": "Solid Waste",
+      "title": "Garbage collection collapse and contractor strikes",
+      "description": "Tripoli produces ~999,356 tonnes of waste/year; when the Sidi al-Sayeh landfill sat on the 2019 battlefront, collection broke down - residents burned trash in streets. Crisis persists: Nov 2025 contractor Lavajet struck for unpaid dues since April; garbage piled up within hours.",
+      "evidence": "AFP: 'tonnes of waste overflows from bins and piles up on roadsides'; resident: 'Is it up to citizens to collect the garbage now?' The National: 'mounds of trash piled higher than the passing cars... rats and stray cats feasting in the garbage.'",
+      "sources": [
+        {"name": "AFP via Pulse / The National / L'Orient Today", "url": "https://www.thenationalnews.com/world/mena/libyan-conflict-leaves-rubbish-mounds-smouldering-in-tripoli-s-streets-1.924214", "date": "2019 / 2025-11"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "Missed-collection reporting with photo evidence; published pickup schedules per district; contractor-payment transparency to preempt strikes."
+    },
+    {
+      "id": "LBY-059",
+      "domain": "water_sanitation",
+      "category": "Drainage",
+      "title": "Rain floods cripple cities - no functional drainage",
+      "description": "Routine winter rain overwhelms Tripoli's drainage: Dec 2024 storms (up to 155mm) closed the main Tripoli highway, flooded homes and hospitals, killed several people incl. a family of three drowned in Tarhuna. Officials admit 'record rainfall exceeds the capacity of the drainage and sewage network.'",
+      "evidence": "Libya NMC/WMO: 'closure of the highway in Tripoli... floods submerged some houses and hospitals.'",
+      "sources": [
+        {"name": "WMO / Libyan National Meteorological Centre", "url": "https://wmo.int/media/news-from-members/northwestern-regions-of-libya-affected-severe-weather-event-5-6-december-2024", "date": "2024-12"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "Flood reporting + road-closure push alerts; maintenance-request pipeline for blocked drains; early-warning integration with the NMC."
+    },
+    {
+      "id": "LBY-060",
+      "domain": "transport_infra",
+      "category": "Roads",
+      "title": "'Roads of Death' - among the world's deadliest, unmaintained for decades",
+      "description": "Potholes, cracks, missing signage and lighting make Libyan roads lethal: 3,000+ traffic deaths in 2024 alone; ~5,500 deaths in five years; 2,500 killed in 2018 - exceeding conflict casualties. Traffic chief: some roads 'have not been repaired in 60 years.' WHO rate ~34/100,000 vs global ~15.",
+      "evidence": "LibyaReview: 'over 3,000 fatalities recorded in traffic accidents throughout 2024'; France24/AFP: 'Libya holds the (world) record for the number of deadly road accidents per capita.'",
+      "sources": [
+        {"name": "LibyaReview / France 24 (AFP) / WHO", "url": "https://libyareview.com/53583/libya-records-over-3000-traffic-fatalities-in-2024/", "date": "2019 / 2025"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "Pothole/hazard crowdsourcing app feeding municipal repair queues (Libyan academics already prototyped YOLO pothole detection in Al-Bayda)."
+    },
+    {
+      "id": "LBY-061",
+      "domain": "transport_infra",
+      "category": "Public Transport",
+      "title": "No functioning urban public transport",
+      "description": "No real urban public transport exists - no metro, no rail since 1965, minimal buses. Residents depend on private cars, taxis and decrepit 'Iveco' minibuses; Tripoli has ~3M vehicles for ~2M people causing extreme congestion. Public buses only returned to Tripoli in Nov 2021 after ~30 years.",
+      "evidence": "AFP/IBTimes: 'There hasn't been public transport in Tripoli for decades'; academic study: 'there is no actual urban public transport system in Libya.'",
+      "sources": [
+        {"name": "AFP via IBTimes / Garyounis University study", "url": "https://www.ibtimes.com/public-buses-return-tripoli-after-30-years-2846244", "date": "2021-11"}
+      ],
+      "severity": "medium",
+      "gaas_opportunity": "Digital route maps, schedules, e-ticketing for nascent bus networks; demand-data feedback loop for route planning."
+    },
+    {
+      "id": "LBY-062",
+      "domain": "transport_infra",
+      "category": "Aviation",
+      "title": "Single functioning Tripoli airport repeatedly shut by fighting",
+      "description": "Since Tripoli International was destroyed in 2014, Mitiga is the capital's only airport - and it closes whenever militias clash: shut ~2 months in 2019 (flights diverted 200km to Misrata), closed again May 2025 during the al-Kikli clashes. Libyans depend on it for medical travel to Tunisia.",
+      "evidence": "Reuters: airport 'repeatedly struck by artillery fire and air strikes'; UNSMIL S/2025/509: May 2025 clashes caused 'the temporary closure of Mitiga airport'; 'Libyans mainly fly to Tunisia for better medical' care.",
+      "sources": [
+        {"name": "Reuters / Euronews / UNSMIL", "url": "https://www.euronews.com/2019/10/29/libya-reopens-tripolis-mitiga-airport-after-two-months-of-closure", "date": "2019-10-29 / 2025-05"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "Flight-status and airport-closure notification service; unified status page across Mitiga/Benina/Misrata."
+    },
+    {
+      "id": "LBY-063",
+      "domain": "telecom_internet",
+      "category": "Internet Quality",
+      "title": "Slow, fragile internet - median ~9-14 Mbps, 25% of towers looted",
+      "description": "Median download speeds: 13.8 Mbps mobile / 8.66 Mbps fixed. ~25% of mobile towers damaged or stolen; fiber routinely cut by excavation (Nov 2025: a Benghazi-area cut knocked out Libyana & Al-Madar in three cities). ISOC rates ISP choice 'poor', resilience 46/100. Fixed broadband only ~5 subs per 100 people.",
+      "evidence": "Freedom House 2023: 'about 25 percent of mobile towers have been damaged or stolen'; Libya Observer Oct 2023: 'cessation of the internet link between Misrata and Tripoli, with a capacity of 40 gigabytes.'",
+      "sources": [
+        {"name": "Freedom House / ISOC Pulse", "url": "https://freedomhouse.org/country/libya/freedom-net/2023", "date": "2023"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "Outage reporting + public status page for LPTIC/ISPs; shared dig-coordination registry; crowdsourced speed tests to baseline service quality."
+    },
+    {
+      "id": "LBY-064",
+      "domain": "telecom_internet",
+      "category": "Digital Rights",
+      "title": "Deliberate communications shutdowns during unrest",
+      "description": "Authorities cut phone/internet during protests and operations: Derna Sept 2023 (~4 days amid post-flood protests), Benghazi Oct 2023 (>1 week; a resident 'had to travel 50 kilometers outside the city just to make a phone call'), Tripoli May 2025 (~12h). In May 2025 the SSA physically raided LPTIC's HQ and abducted staff.",
+      "evidence": "OMCT: LAAF 'abruptly severed internet access in Benghazi... effectively isolating the city... for over a week'; UNSMIL S/2025/509: 'Stability Support Apparatus raided the Libyan Post, Telecommunications and Information Technology Company.'",
+      "sources": [
+        {"name": "Freedom House / OMCT / UNSMIL", "url": "https://freedomhouse.org/country/libya/freedom-net/2025", "date": "2025"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "Design for graceful degradation: offline-capable service requests, SMS/USSD fallback, offline-sync so the platform functions through partial shutdowns."
+    },
+    {
+      "id": "LBY-065",
+      "domain": "telecom_internet",
+      "category": "Telecom Governance",
+      "title": "State monopoly fragility - single points of failure (LPTIC)",
+      "description": "All fixed/mobile infrastructure concentrates under state-owned LPTIC (Libyana, Al-Madar, LTT). No meaningful private competition; a single fiber cut or one political order can darken entire regions, and outages are announced opaquely via Facebook posts with no status tracking.",
+      "evidence": "ISOC Pulse: ISP choice rated 'poor'; LPTIC blamed the Derna outage on 'a rupture in the optical fibre... could be the result of a deliberate act of sabotage' - citizens left to guess.",
+      "sources": [
+        {"name": "ISOC Pulse / VOA", "url": "https://pulse.internetsociety.org/en/blog/2023/09/monitoring-reports-of-internet-shutdown-in-libya/", "date": "2023-09"}
+      ],
+      "severity": "medium",
+      "gaas_opportunity": "GaaS service-desk integration gives citizens a fault-ticket number and ETA instead of Facebook-announcement roulette."
+    },
+    {
+      "id": "LBY-066",
+      "domain": "housing_municipal",
+      "category": "Housing",
+      "title": "300,000 stalled housing units; ~$27bn of unfinished projects",
+      "description": "Of ~$40bn in pre-2011 contracted projects only ~$13bn was completed; ~300,000 housing contracts suspended and 1,800 development projects halted when contractors fled. The largest scheme, 20,000 units in Ganfouda, has been frozen since 2011 while informal building spreads.",
+      "evidence": "HIB head: 'only about a third (US$13bn) of the total projects... amounting to US$40bn, were completed'; CAHF: '300,000 housing contracts were halted, and 1,800 development projects put on hold.'",
+      "sources": [
+        {"name": "Libya Herald / CAHF", "url": "https://libyaherald.com/2021/02/hib-prepares-report-on-17000-housing-units-for-ppp-investment", "date": "2021-02 / 2024-25"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "Public housing-application registry with queue-position transparency; project-status tracker showing which stalled sites are re-tendered."
+    },
+    {
+      "id": "LBY-067",
+      "domain": "housing_municipal",
+      "category": "Local Government",
+      "title": "Municipalities legally responsible but unable to deliver",
+      "description": "Law 59 delegates housing, roads, water, health to ~116 municipalities, but they can't collect taxes, get unpredictable central transfers, and lack staff - services simply go undelivered. Only 43 municipalities held elections by 2021; citizens can't identify who is responsible and turn to informal actors.",
+      "evidence": "UN CCA: municipalities 'still lack the means to effectively serve their citizens'; USAID LGCS: 'little improvement in municipality performance'; Arab Barometer VII: only 19% satisfied with streets/roads; 46% 'completely dissatisfied.'",
+      "sources": [
+        {"name": "UN Common Country Analysis 2023 / USAID / Arab Barometer", "url": "https://libya.un.org/sites/default/files/2023-09/UN_CommonCountryAnalysis_Libya_2023_final.pdf", "date": "2020-2023"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "A centralized GaaS front-end can bypass weak municipal IT entirely - one national service-request pipeline routed to whichever body owns the service; municipal storefronts (cf. Sebha 'Baladi Plus')."
+    },
+    {
+      "id": "LBY-068",
+      "domain": "healthcare",
+      "category": "Medical Supplies",
+      "title": "Dialysis supply crisis: 90 units serving ~6,000 patients near collapse",
+      "description": "Kidney patients face life-threatening dialysis interruptions because the Medical Supply Authority fails to deliver consumables. Patients travel between units searching for a working machine; officials admit only ~30% of needed supplies are delivered; 20 MoH warehouses reported completely out of stock (March 2025).",
+      "evidence": "~6,000 kidney patients on 90 units; Tajoura Heart Centre called it a 'real crisis'; prosecutors found funds meant for dialysis centres had been diverted.",
+      "sources": [
+        {"name": "LibyaReview / The Libya Observer", "url": "https://libyareview.com/54250/6000-kidney-patients-at-risk-due-to-drug-shortage-in-libya/", "date": "2025-03-24"}
+      ],
+      "severity": "critical",
+      "gaas_opportunity": "National dialysis-patient registry + real-time supply stock dashboard + slot-booking allocates sessions to functioning units and triggers procurement alerts."
+    },
+    {
+      "id": "LBY-069",
+      "domain": "healthcare",
+      "category": "Medicine Shortages",
+      "title": "Chronic-disease medicines 'almost completely stopped'",
+      "description": "The Libyan Patients' Union warns medicine imports have nearly halted: ~1.1M diabetics struggle for medication, ~23,000 cancer patients find essential drugs 'practically unavailable' for long stretches, ~1,500 muscular dystrophy patients get neither drugs nor referrals. Private-pharmacy prices soar with the dollar.",
+      "evidence": "Union president: shipments 'almost completely stopped'; ministry responded with a LYD 4bn tender restart, confirming the gap's scale. MPs warn of 'unbearable pressure on patients.'",
+      "sources": [
+        {"name": "Libyan Express / LibyaReview", "url": "https://www.libyanexpress.com/vital-treatments-running-out-across-libya-union-warns/", "date": "2025"}
+      ],
+      "severity": "critical",
+      "gaas_opportunity": "Patient-facing medicine-availability portal + e-prescription linked to national stock lets citizens see where drugs exist, reserve them, and register shortages feeding procurement data."
+    },
+    {
+      "id": "LBY-070",
+      "domain": "healthcare",
+      "category": "Cancer Care",
+      "title": "Oncology fragmented: chemo stock-outs, families bankrupted",
+      "description": "Cancer patients face intermittent chemotherapy shortages, broken equipment and long waits; families sell assets for private clinics or travel to Tunisia/Turkey. Benghazi's only radiotherapy centre was destroyed in 2014 fighting, forcing 500 patients abroad; paediatric oncology survives on donated drug batches.",
+      "evidence": "National Cancer Control Authority registered 6,659 of 20,000 target patients; 'intermittent shortages of chemotherapy drugs'; 'financial struggles faced by families for treatment in private clinics.'",
+      "sources": [
+        {"name": "LibyaReview / WHO EMRO", "url": "https://libyareview.com/42565/national-cancer-control-agency-registers-thousands-for-treatment-in-libya/", "date": "2024"}
+      ],
+      "severity": "critical",
+      "gaas_opportunity": "Oncology patient registry with drug-entitlement tracking, digital treatment-abroad referral workflow, and appointment scheduling."
+    },
+    {
+      "id": "LBY-071",
+      "domain": "healthcare",
+      "category": "Treatment Abroad",
+      "title": "Treatment-abroad program: opaque, debt-ridden, patients stranded",
+      "description": "Libya spends hundreds of millions on overseas treatment with 'no specific mechanism or clear standard' for eligibility. Embassies run out of allocations; foreign hospitals stop serving Libyans mid-treatment - Tunisia suspended state-funded care in Sept 2025 over $112M unpaid bills. Audits find ~50% of claims inflated; forged-invoice scandals (Stuttgart 'pigsty', ~$436M Jordan claims).",
+      "evidence": "CBL Governor's letter: LYD 248M transferred in 2023 for old debts; audits cut Turkey/Jordan claims by 50% showing 'inflated expenditures'; AG detained a Vatican diplomat over EUR669k bills 'without any documents indicating the identities of Libyan patients.'",
+      "sources": [
+        {"name": "Libya Herald", "url": "https://libyaherald.com/2023/10/cbl-governor-calls-on-attorney-general-to-stop-continuous-drain-of-inflated-and-mismanaged-overseas-state-health-costs", "date": "2023-10"},
+        {"name": "The Arab Weekly", "url": "https://thearabweekly.com/tunisia-stops-libyan-state-funded-medical-care-over-112-million-arrears", "date": "2025-09"}
+      ],
+      "severity": "critical",
+      "gaas_opportunity": "Transparent digital referral pipeline - eligibility rules engine, e-approval, per-patient cost ledger, hospital e-invoicing - ends paper abuse and stranded patients."
+    },
+    {
+      "id": "LBY-072",
+      "domain": "healthcare",
+      "category": "Medical Procurement",
+      "title": "Medical Supply Agency corruption directly causes pharmacy stock-outs",
+      "description": "Libya's sole drug supplier is repeatedly gutted by graft: LYD 73M embezzled via forged documents (2025), LYD 1.5bn of a 2013 tender fund misused, an EUR11M contract for 'outdated' insulin pumps rejected by the Diabetes Authority, 12 suppliers' accounts frozen.",
+      "evidence": "Administrative Control Authority suspended the MSA head + 5 officials for embezzling LYD 73M; AG says misused billions 'affected the regularity of public tendering.'",
+      "sources": [
+        {"name": "The Libya Observer / Libya Herald", "url": "https://libyaobserver.ly/inbrief/medical-supply-head-and-five-former-officials-suspended-over-embezzlement-73-million-dinars", "date": "2025-07-02"}
+      ],
+      "severity": "critical",
+      "gaas_opportunity": "E-procurement with published tenders, contract milestones and warehouse stock telemetry removes the document-forgery attack surface."
+    },
+    {
+      "id": "LBY-073",
+      "domain": "healthcare",
+      "category": "Health Workforce",
+      "title": "Nationwide health-worker strikes over pay and insurance",
+      "description": "Medical staff began an open-ended partial strike in Sept 2026 demanding health insurance, allowances and unpaid dues; Al-Khadra, Zuwara and Tripoli University Hospital staff joined, with unions threatening total sit-ins. Only emergency/ICU/dialysis care continues - routine services stall for weeks.",
+      "evidence": "Union coordinator: frustration 'at levels not seen in years'; doctors call the 10% unified-pay increase insufficient amid inflation.",
+      "sources": [
+        {"name": "Libya Herald / Sawti", "url": "https://libyaherald.com/2026/09/al-khadra-and-zuwara-hospital-medical-staff-join-partial-strike-as-action-spreads-union-threatens-total-sit-ins", "date": "2026-09"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "Health-workforce payroll/HR platform (verified records, automated allowance/dues tracking) removes the payment-dispute friction driving strikes."
+    },
+    {
+      "id": "LBY-074",
+      "domain": "healthcare",
+      "category": "Health Workforce",
+      "title": "Health workforce hollowed out: >50% shrinkage, ghost workers",
+      "description": "The 2017 SARA survey showed health workforce capacity shrank >50%; ~80% of foreign staff who ran the pre-2011 system left. 302 facilities employ 14,500 staff but deliver zero services; 'ghost workers' pad payrolls; kidnappings of doctors drive further flight - Sabha kept only 10 specialist doctors.",
+      "evidence": "WHO: acute shortages in nurses/midwives, anaesthesia, neurosurgery, psychiatry, radiotherapy; 'high absenteeism'; no comprehensive national workforce database exists.",
+      "sources": [
+        {"name": "WHO EMRO / Sawti", "url": "https://applications.emro.who.int/docs/WHOEMHRH658E-eng.pdf", "date": "2019 / 2026"}
+      ],
+      "severity": "critical",
+      "gaas_opportunity": "National health-workforce registry (verified credentials, facility assignments, attendance data) exposes ghost workers and maps real staffing gaps."
+    },
+    {
+      "id": "LBY-075",
+      "domain": "healthcare",
+      "category": "Health Financing",
+      "title": "Catastrophic out-of-pocket costs; no national health insurance",
+      "description": "With public hospitals unreliable, families turn to booming private clinics charging 'higher in some cases than prices abroad.' Citizens borrow and sell property for single episodes of care; ~13% forgo needed care over cost. Insurance is a top demand in every health-worker strike.",
+      "evidence": "LANA documented a LYD 10,700 neonatal ICU bill + LYD 3,965 C-section, and a LYD 56,000 cardiac catheterization paid by borrowing; private consultations LYD 20-65 'a hefty amount.'",
+      "sources": [
+        {"name": "Libya News Agency (LANA) / WHO", "url": "https://lana.gov.ly/post.php?id=331245&lang=ar", "date": "2025-04-23"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "National e-insurance/entitlement platform - citizen coverage accounts, e-claims, published price schedules - regulates billing and replaces cash-at-the-counter chaos."
+    },
+    {
+      "id": "LBY-076",
+      "domain": "healthcare",
+      "category": "Health Information",
+      "title": "No patient records or GP system - doctors rely on verbal histories",
+      "description": "Libya has no functioning integrated health information system, no EHRs, no family-doctor gatekeeping: patients self-refer and physicians 'rely on information related to them orally.' A unified electronic health file was only piloted at two clinics in 2022 after 5+ years of work.",
+      "evidence": "WHO HIS assessment: 'no standard operating procedures for data management... or even a functioning, integrated web-based HIS.' Libya Herald: 'unable to refer to patients' records for past conditions or treatments.'",
+      "sources": [
+        {"name": "WHO EMRO / Libya Herald", "url": "https://libyaherald.com/2022/05/trail-run-of-the-unified-electronic-health-file-system-inaugurated", "date": "2022-05"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "The core GaaS play: national EHR + patient portal + referral system, starting from the existing pilot, gives every citizen a portable health record."
+    },
+    {
+      "id": "LBY-077",
+      "domain": "healthcare",
+      "category": "Emergency Services",
+      "title": "Collapsed EMS: no ambulance dispatch, untrained attendants",
+      "description": "The emergency medical system 'has collapsed in many areas': no response-time monitoring, attendants mostly first-aiders, ambulances hijacked, fuel/communication failures strand patients. Citizens distrust and avoid the ambulance service entirely.",
+      "evidence": "WHO sitreps document collapse since 2014; 2024 study found 'people's lack of trust in the current ambulance services, and their reluctance to rely on the service.'",
+      "sources": [
+        {"name": "WHO EMRO / EPSTEM journal", "url": "https://doi.org/10.55549/epstem.1365392", "date": "2024"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "Centralized e-dispatch (single emergency number, GPS fleet tracking, hospital-bed availability feed) rebuilds trust and cuts response times."
+    },
+    {
+      "id": "LBY-078",
+      "domain": "healthcare",
+      "category": "Access & Waiting",
+      "title": "Hospitals run at 2-10x capacity; month-long surgical waits",
+      "description": "Tripoli's Al-Khadra hospital, built for 300 emergency cases, treats up to 3,000/day (250,000 ER patients in 2019). Appointments are 'nearly impossible'; children's cardiac surgery exists only in Tripoli with ~2,000 children waitlisted + 500 new cases/year; surgical waits reach a month.",
+      "evidence": "AFP: patient lobbying 'every two or three days' for his father's angioplasty; private operation >$10,000. 43 of 98 assessed hospitals partially or non-functional (OCHA); ~1.3M people lack access to life-saving care.",
+      "sources": [
+        {"name": "AFP via Pulse / Libya Herald / OCHA", "url": "https://libyaherald.com/2021/07/letter-to-the-editor-failure-to-pass-budget-is-killing-libyan-children-with-heart-conditions-with-2000-still-on-waiting-list", "date": "2021-07 / 2023"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "Digital appointment scheduling, centralized surgical waitlists with triage scoring, SMS notifications replace queue-camp-out lobbying."
+    },
+    {
+      "id": "LBY-079",
+      "domain": "healthcare",
+      "category": "Facility Status",
+      "title": "Facilities damaged/closed by conflict and floods; no service directory",
+      "description": "WHO assessed 78 facilities after Storm Daniel: more than half closed or non-functional. Aug 2024 floods knocked Al Kufra Central and Maternity Hospitals fully out of service (ICU patients evacuated, pharmacy destroyed). Citizens have no authoritative way to know which facilities operate.",
+      "evidence": "ECHO/WHO: 'Al Kufra Central Hospital and Al Kufra Maternity Hospital are currently out of service'; OCHA: many facilities 'directly attacked or damaged... those that remain functional are overburdened.'",
+      "sources": [
+        {"name": "ReliefWeb/ECHO / WHO EMRO", "url": "https://reliefweb.int/report/libya/libya-flooding-iom-who-dg-echo-echo-daily-flash-14-august-2024", "date": "2024-08-14"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "Live national facility-status directory (open/closed, services, capacity) with citizen-facing map prevents wasted journeys and enables load-balancing referrals."
+    },
+    {
+      "id": "LBY-080",
+      "domain": "healthcare",
+      "category": "Immunization",
+      "title": "Immunization gaps: real measles coverage only 70-85%",
+      "description": "Administrative data overstates coverage: studies show measles vaccination among under-5s at only 70-85%. ~700,000 undocumented migrants plus vast geography create immunity gaps; WHO/UNICEF run catch-up campaigns reaching 1.35M children because routine EPI misses them.",
+      "evidence": "WHO EMRO (May 2025): 'measles vaccination coverage among children under 5 is between 70-85%, revealing a possible gap between administrative reporting and population-level coverage.'",
+      "sources": [
+        {"name": "WHO EMRO", "url": "https://www.emro.who.int/lby/libya-news/with-who-support-libya-launches-a-comprehensive-review-of-its-national-immunization-programme.html", "date": "2025-05-07"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "Child immunization e-registry with per-child records, reminder SMS, defaulter tracing replaces paper cards parents lose."
+    },
+    {
+      "id": "LBY-081",
+      "domain": "healthcare",
+      "category": "Maternal Health",
+      "title": "Maternal/reproductive health desert: 0 of 19 PHCs offer family planning",
+      "description": "Only 15-20% of communities can access reproductive-health services; in WHO's 2024 assessment none of 19 primary health centres provided family planning. Severe midwife shortages persist since the foreign exodus; remote southern women rely on UNFPA mobile units for C-sections.",
+      "evidence": "WHO readiness assessment: 'None of the 19 PHC centres assessed were providing family planning services'; only 26-32% offered basic child-health interventions.",
+      "sources": [
+        {"name": "WHO Annual Report 2024 / UNFPA", "url": "https://applications.emro.who.int/docs/9789292741716-eng.pdf", "date": "2025"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "Pregnancy registration, antenatal-visit scheduling, and mobile-clinic routing bring maternal services to underserved regions."
+    },
+    {
+      "id": "LBY-082",
+      "domain": "healthcare",
+      "category": "Mental Health",
+      "title": "Mental-health near-absence: ~700,000 in need, ~0.2 psychiatrists/100k",
+      "description": "WHO estimates ~1 in 10 Libyans need mental-health care, yet Libya has ~1.24 psychiatrists/100k, only two psychiatric hospitals (~2,000 beds) for the country, no child/adolescent psychiatry, and no addiction-treatment centre despite rising drug use.",
+      "evidence": "IMC assessment: 'MHPSS needs are chronically neglected... shortage of qualified specialists... social stigma'; patients present 'at a very late stage' and most admissions are involuntary.",
+      "sources": [
+        {"name": "International Medical Corps / Springer", "url": "https://link.springer.com/article/10.1186/s43045-023-00322-4", "date": "2023-2024"}
+      ],
+      "severity": "medium",
+      "gaas_opportunity": "Discreet tele-consultation booking + anonymous e-screening + referral pathways lower the stigma barrier and stretch the tiny workforce."
+    },
+    {
+      "id": "LBY-083",
+      "domain": "healthcare",
+      "category": "Digital Track Record",
+      "title": "Prior e-gov attempts failed at scale: crashed vaccine portal, 2-star app",
+      "description": "Libya's flagship e-health attempt showed the pitfalls: the NCDC vaccination portal crashed under load at launch; only ~400,000 of a 3-million registration target signed up; the 'Tahseen' app holds ~2.0 stars with users unable to create accounts. Demand exists - execution is the gap.",
+      "evidence": "Libya Herald: 'the website was still under development... it had already crashed under the pressure of large number of users'; AppRecs: 55% one-star reviews, 'cannot create account.'",
+      "sources": [
+        {"name": "Libya Herald / AppRecs", "url": "https://libyaherald.com/2021/03/libya-launches-online-anti-coronavirus-vaccination-registration-site", "date": "2021-03"}
+      ],
+      "severity": "medium",
+      "gaas_opportunity": "A platform built for scale/reliability with offline-capable registration learns directly from this failure - proven demand channel needing working software."
+    },
+    {
+      "id": "LBY-084",
+      "domain": "healthcare",
+      "category": "Service Access",
+      "title": "IDPs and undocumented people blocked from services by paperwork",
+      "description": "IDPs, returnees, migrants and women without documents are turned away from public facilities and schools demanding civil paperwork. 24% of Libyans and 80% of migrants report problems accessing health services; ~139,000 IDPs remain in protracted displacement.",
+      "evidence": "OCHA HNO: 'Access to health, education and other public services are further restricted for people who have lost legal documents.' REACH: documentation 'prevents them from registering in the national education system.'",
+      "sources": [
+        {"name": "OCHA / REACH-IMPACT", "url": "https://www.unocha.org/publications/report/libya/libya-humanitarian-needs-overview-2020-january-2020", "date": "2020-01 / 2024-25"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "Digital identity issuance + document-free e-registration lets displaced citizens prove entitlement with a national number instead of paper certificates."
+    },
+    {
+      "id": "LBY-085",
+      "domain": "education",
+      "category": "Teacher Pay",
+      "title": "Nationwide teachers' strike keeps ~1.6-2.6M students home",
+      "description": "Since Sept 2026 teachers' sit-ins escalated into an open-ended nationwide strike keeping ~1.6 million public-school students home indefinitely - both rival governments' teachers struck simultaneously. Pay is LYD 1,000-2,500/month; teachers work second jobs; demands include arrears, unified pay scale, health insurance.",
+      "evidence": "AFP: 'Classes for some 1.6 million public-school students... postponed indefinitely'; strike '100 percent followed' in public sector; anti-corruption drive earlier 'left over 150,000 teachers and staff without salaries.'",
+      "sources": [
+        {"name": "France24/AFP / Al Jazeera", "url": "https://www.france24.com/en/live-news/20261001-libya-s-pay-strike-rallies-teachers-across-divided-nation", "date": "2026-10-01"}
+      ],
+      "severity": "critical",
+      "gaas_opportunity": "Verified payroll records, automated arrears accounting and transparent salary-scale administration remove dispute drivers; HR self-service shows each teacher what they're owed."
+    },
+    {
+      "id": "LBY-086",
+      "domain": "education",
+      "category": "Materials & Procurement",
+      "title": "Chronic textbook failure: ~2-2.6M students bookless; ministers detained",
+      "description": "Free-textbook delivery repeatedly collapses: in 2021 students photocopied whole books at hundreds of dinars per family; in 2025/26 the year started a month late with ~2-2.6M students bookless amid contracts worth LYD 238-412M under investigation. Two successive education ministers were detained over the failures.",
+      "evidence": "Arab News/AFP: 'the parents of nearly 2.6 million students who lacked books forced to shell out for photocopies'; prosecutors found a 'lapse in the duty to provide textbooks to two million students on time.'",
+      "sources": [
+        {"name": "Arab News / Al Wasat", "url": "https://www.arabnews.com/middle-east/libya-detains-education-minister-over-textbook-scandal-2621185", "date": "2025"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "Per-student entitlement tracking + e-procurement milestones + free official e-textbook library removes the distribution black box entirely."
+    },
+    {
+      "id": "LBY-087",
+      "domain": "education",
+      "category": "School Infrastructure",
+      "title": "Damaged, destroyed and occupied schools; double-shift overcrowding",
+      "description": "A decade of conflict damaged/destroyed 241 schools; 23 serve as IDP shelters; Storm Daniel damaged 117 schools across 15 municipalities. Urban schools run double shifts for up to 2,000 students each; southern schools have four run-down classrooms for whole communities; 23% of Fezzan respondents cite education access as the main reason for permanent displacement.",
+      "evidence": "OCHA: '241 schools were partially damaged or fully destroyed... 23 schools are still being used as collective shelters'; ETF: 'double-shift systems to accommodate up to 2,000 students per school'; ~111,000-316,000 children need education assistance.",
+      "sources": [
+        {"name": "OCHA / UNICEF / European Training Foundation", "url": "https://www.unocha.org/publications/report/libya/libya-humanitarian-access-snapshot-education-3-august-2021", "date": "2021-08 / 2023-10 / 2024"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "School-facility registry with condition surveys + student re-enrollment/relocation workflows; online enrollment with capacity-aware assignment and distance-learning fallback."
+    },
+    {
+      "id": "LBY-088",
+      "domain": "education",
+      "category": "Scholarships Abroad",
+      "title": "Scholarship students abroad abandoned: 6-7+ months unpaid stipends",
+      "description": "State-funded students in Turkey, UK, Egypt, Malaysia repeatedly go 7+ months without tuition or living allowances because the payment file bounces between Finance, Planning and Higher Education ministries over exchange-rate recalculation. Universities freeze accounts and threaten expulsion; embassies have been stormed in protests.",
+      "evidence": "Libya Observer: 'the bitterness of injustice... delayed scholarships... for the sixth consecutive month'; CBL: delay 'caused by the Ministry of Finance not yet sending payment authorizations'; Finance said file 'stuck at Planning and Higher Education' - perfect circular bureaucracy.",
+      "sources": [
+        {"name": "The Libya Observer", "url": "https://ar.libyaobserver.ly/article/33173", "date": "2025-07-14"},
+        {"name": "The Libya Observer", "url": "https://ar.libyaobserver.ly/article/29302", "date": "2024-08-28"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "Scholarship-management module: verified student status, automated recurring disbursement, embassy dashboards, payment-status tracking - kills multi-ministry file ping-pong."
+    },
+    {
+      "id": "LBY-089",
+      "domain": "education",
+      "category": "Exams & Certification",
+      "title": "Exam integrity + admin chaos: results blocked, cancelled, or opaque",
+      "description": "The national secondary certificate cycle is fragile: Zuwara's results were blocked then cancelled over suspected mass cheating, triggering protests and a court battle; 134,256 candidates sat the 2026 exams. Universities still run paper-based, in-person registration and transcript issuance with queues and 'errors in student data.'",
+      "evidence": "Libya Observer: ministry 'blocked the results... over lack of authenticity' then cancelled after 'high pass rates'; a court forced adoption. Higher-ed ministry cites delayed student grant cards due to 'errors in student data' from manual registrar submissions.",
+      "sources": [
+        {"name": "The Libya Observer / Sabratha University", "url": "https://libyaobserver.ly/inbrief/zuwara-sees-protests-education-ministry-blocks-secondary-school-certificate-results", "date": "2018-11 / 2023"}
+      ],
+      "severity": "medium",
+      "gaas_opportunity": "Secure digital exam administration (seat-number identity, automated result publication, tamper-evident e-certificates and transcripts) ends blocked results and registrar queues."
+    },
+    {
+      "id": "LBY-090",
+      "domain": "governance",
+      "category": "Legitimacy",
+      "title": "Expired mandates everywhere - two governments, no legitimate authority",
+      "description": "Parliament elected in 2014 never handed over power; the GNU installed in 2021 refused to quit after elections collapsed; a rival eastern administration was appointed in 2022. Every institution's mandate has expired, blocking unified budgets, laws and service reform.",
+      "evidence": "Reuters: HoR 'elected in 2014... four-year mandate' still sitting; SIPRI: 'Libyans are robbed of the opportunity to choose their own leaders'; 2026 Tajoura protesters rejected 'both the unity government and the House of Representatives.'",
+      "sources": [
+        {"name": "Reuters / SIPRI / Al Jazeera", "url": "https://www.reuters.com/world/africa/legitimacy-crisis-libyas-state-institutions-2024-08-28/", "date": "2022-07 / 2024-08"}
+      ],
+      "severity": "critical",
+      "gaas_opportunity": "Neutral, ministry-agnostic service layer (SSO + service catalog) that survives government changes and works under either administration."
+    },
+    {
+      "id": "LBY-091",
+      "domain": "governance",
+      "category": "Fiscal",
+      "title": "No unified national budget - LYD 60bn off-budget parallel spending",
+      "description": "Since 2014 no unified rules-based budget exists: temporary allocations, off-budget mechanisms and parallel eastern financing fragment spending. East-based authorities spent ~LYD 60bn in 2024 outside official fiscal statements (5x the GNU development budget), flipping the balance to deficit, forcing devaluation; public debt hit ~LYD 303bn by end-2025.",
+      "evidence": "IMF 2025 Article IV: 'Reported spending by East-based authorities in 2024 was around LYD 60 billion and had not been incorporated in the official end-of-year fiscal statement'; salaries 54% + subsidies 25% of expenditure leave almost nothing for services.",
+      "sources": [
+        {"name": "IMF / UNSMIL / Libya Observer", "url": "https://libyaobserver.ly/economy/imf-warns-excessive-spending-eastern-libya", "date": "2025 / 2026-04"}
+      ],
+      "severity": "critical",
+      "gaas_opportunity": "Open-budget portal with real-time expenditure publication (IMF's explicit advice) plus citizen-facing payment transparency makes entitlements auditable."
+    },
+    {
+      "id": "LBY-092",
+      "domain": "governance",
+      "category": "Elections",
+      "title": "Collapsed 2021 election; attacked 2025 municipal polls",
+      "description": "The Dec 2021 presidential vote collapsed over rules/candidate disputes despite 2.8M registered voters; armed men raided HNEC offices and looted voter cards. In Aug 2025, municipal elections in 37 of 63 municipalities were suspended by attacks on election offices. 15,000 forged voter cards (2012); 3,829 forged ballots (2021).",
+      "evidence": "Reuters: parliament said 'Friday's planned presidential election would not go ahead.' Anadolu: 'elections held in only 26 [of 63], due to physical attacks against election offices.'",
+      "sources": [
+        {"name": "Reuters / Anadolu / Amnesty", "url": "https://www.aa.com.tr/en/middle-east/libya-concludes-municipal-elections-vote-counting-underway/3661374", "date": "2021-12 / 2025-08"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "Tamper-evident digital voter rolls and results publication reduce forgery and office-seizure attack surfaces."
+    },
+    {
+      "id": "LBY-093",
+      "domain": "governance",
+      "category": "State Capture",
+      "title": "Militias control ministries, checkpoints, and extort travelers",
+      "description": "Until a 2024-25 security plan, armed groups physically controlled swathes of Tripoli including ministry buildings, ran checkpoints with armored vehicles, fought lethal street battles (55 killed Aug 2023). Checkpoints nationwide extort civilians; only in June 2025 did the state claim 'exclusive control' of 187 sites for the first time since 2011.",
+      "evidence": "BBC: militias 'installed checkpoints on roads using armoured vehicles with mounted weapons... not under the direct command of the Libyan government, but do receive public funding'; Libya Herald: '187 new security posts... previously occupied by armed formations.'",
+      "sources": [
+        {"name": "BBC / Libya Herald / ACLED", "url": "https://www.bbc.com/news/world-africa-68366304", "date": "2024-03 / 2025-06"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "Digital-first services reduce physical visits to militia-adjacent offices; e-payments cut cash extortion points at counters."
+    },
+    {
+      "id": "LBY-094",
+      "domain": "governance",
+      "category": "Corruption / Service Culture",
+      "title": "Wasta and broker dependency as the de facto service channel",
+      "description": "Routine transactions - university admission, passports, bank accounts, FX, business contracts - effectively require a 'wasta' intermediary or paid broker; clerks charge 'speed-up' fees just to accept papers. TI's Global Corruption Barometer found 62% of Libyans had paid a bribe for basic public services; 89% corruption perception (Arab Barometer 2022); CPI rank 173/180.",
+      "evidence": "'In Libya you have to use them [brokers] to get all type of legal work done' - officers 'delaying on purpose, to make you desperate'; '62% of respondents said they had paid a bribe to one of eight basic public services.'",
+      "sources": [
+        {"name": "TI GCB / Arab Barometer / US State Dept", "url": "https://www.state.gov/reports/2025-investment-climate-statements/libya", "date": "2013 survey; confirmed current 2022-2025"}
+      ],
+      "severity": "critical",
+      "gaas_opportunity": "The core GaaS thesis: removing discretionary human touchpoints (apply-pay-track online) starves wasta and petty bribery at the counter level."
+    },
+    {
+      "id": "LBY-095",
+      "domain": "governance",
+      "category": "Business Licensing",
+      "title": "Business registration: opaque criteria, unexplained delays, bribe-or-quit",
+      "description": "Licensing 'is often subject to long and unexplained delays, and decisions are usually based on subjective and non-transparent criteria' (US State Dept). Required documents and office visits are so numerous 'many either give up on the process or pay a bribe to short-circuit the system.' Libya ranks 'among the most opaque' bureaucracies in MENA.",
+      "evidence": "Libya Herald: 'A corrupt bureaucracy is unwilling to reform a bureaucracy that feeds them... many work in the shadow/black economy'; a 'one-stop shop' was still being re-announced in Feb 2026.",
+      "sources": [
+        {"name": "US State Dept 2025 Investment Climate / Libya Herald", "url": "https://www.state.gov/reports/2025-investment-climate-statements/libya", "date": "2025"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "The UNCTAD eRegulations portal (ejraat.gov.ly) already maps procedures - executing them online (single-window company registration + e-payment) is the proven next step."
+    },
+    {
+      "id": "LBY-096",
+      "domain": "governance",
+      "category": "Vehicle Registration",
+      "title": "Chronic vehicle-registration failure: mass unplated cars",
+      "description": "For over a decade large fleets drive unregistered because plates run out and registration is burdensome - hundreds seized in each periodic crackdown (350 in one Abu Salim sweep; 122 in Ain Zara). Police cite plate shortages; traffic systems only began electronic linkage with the national database in Nov 2023.",
+      "evidence": "Shahat traffic chief: 'the section suffers a shortage of metal plates... this obstructed registration for many citizens'; Tripoli Security seized 'more than 350 vehicles traveling without metal plates' in one municipality in one sweep.",
+      "sources": [
+        {"name": "Alwasat / GIA", "url": "https://en.alwasat.ly/news/libya/401593", "date": "2023"}
+      ],
+      "severity": "medium",
+      "gaas_opportunity": "Dealer/importer-integrated e-registration (vehicle registered at customs/sale, plates mailed) + SMS renewal converts enforcement failure into a service."
+    },
+    {
+      "id": "LBY-097",
+      "domain": "governance",
+      "category": "Disaster",
+      "title": "Derna dam collapse - ignored warnings, embezzled maintenance funds",
+      "description": "Two 1970s-era dams above Derna burst during Storm Daniel (Sept 2023), killing ~4,000-11,300+ and destroying ~18,500 homes. Cracks documented since 1998; a 2006 ministry study warned of 'the danger'; millions paid to a Turkish contractor yet neither dam was ever repaired; the Audit Bureau submitted evidence that funds were made available for work never undertaken.",
+      "evidence": "NYT: 'the government had paid millions of dollars to the Turkish contractor... Neither dam was ever repaired'; Science Advances: dam failure 'amplified the damage nearly 20-fold'; housing damage LYD 2,082M (~$427.6M).",
+      "sources": [
+        {"name": "AP / NYT / Guardian / Science Advances", "url": "https://apnews.com/article/libya-derna-dams-collapse-floods-corruption-neglect-chaos-45f76d2ac76be634865539a27b518ada", "date": "2023-09"}
+      ],
+      "severity": "critical",
+      "gaas_opportunity": "Public infrastructure-asset registry with inspection/maintenance status and budget-execution transparency; citizen hazard reporting; open procurement records."
+    },
+    {
+      "id": "LBY-098",
+      "domain": "governance",
+      "category": "Disaster Response",
+      "title": "Derna response failures - stay-home orders, blocked aid, internet cut",
+      "description": "Residents were told to shelter at home rather than evacuate; authorities then hindered aid for days, ordered journalists out, and cut internet/phone access amid protests (mayor's house burned). Rival governments produced no unified response; ~44,800 displaced. A year on, survivors face 'burdensome and often impossible hurdles' to compensation - only 13% of IDPs in Ejdabia and 44% in Derna got any.",
+      "evidence": "BBC: 'residents... told to stay at home rather than being evacuated... authorities are accused of hindering the aid effort'; HRW: 'burdensome and often impossible hurdles accessing any kind of state support.'",
+      "sources": [
+        {"name": "BBC / ISOC Pulse / HRW / IOM DTM", "url": "https://www.bbc.com/news/world-africa-66961312", "date": "2023-09/10 / 2024"}
+      ],
+      "severity": "critical",
+      "gaas_opportunity": "National early-warning SMS/cell-broadcast system + unified disaster dashboard across administrations; digital claims/case-management for compensation with auditable eligibility."
+    },
+    {
+      "id": "LBY-099",
+      "domain": "displacement",
+      "category": "Return & Reintegration",
+      "title": "Tawergha: 40,000 displaced a decade, return blocked by missing services",
+      "description": "The entire town of Tawergha (~40,000 people) was expelled in 2011; return agreements failed because homes, clinics and businesses were destroyed and armed groups blocked entry - families camped in the desert in freezing temperatures; as of 2021 only ~6,900 returned. Authorities remain 'reluctant to provide basic services in the city.'",
+      "evidence": "IOM DTM: 'only around 6,900 individuals have returned as of May 2021 due to a lack of basic services'; OHCHR: returnees 'stranded and even dying in the desert.'",
+      "sources": [
+        {"name": "IOM DTM / OHCHR / Carnegie", "url": "https://www.ohchr.org/en/press-releases/2018/02/libya-residents-tawergha-dying-desert-attempt-return-home-after-seven-years", "date": "2018-2023"}
+      ],
+      "severity": "high",
+      "gaas_opportunity": "Returnee service packages delivered digitally (compensation claims, re-registration, service enrollment) independent of local gatekeepers."
+    }
+  ],
+  "cross_cutting_findings": [
+    "Identity is the load-bearing wall: passport, license, salary, grant, banking, voting and SIM problems all trace to the corrupted civil-registry/NID layer. Sequence: identity + verification API first, then service storefronts.",
+    "Interdependence cascade is the signature failure mode: power cut -> fuel station can't pump -> generator diesel runs out -> Man-Made River wells trip -> city loses water -> businesses close. One unified incident/status picture has outsized value.",
+    "Information vacuum is itself a pain point: citizens queue 5 hours because 'there is no information about when the fuel truck arrives'; outages announced (if at all) via Facebook posts. Publish-anything beats publish-nothing - SMS/USSD alerts are the highest-value feature.",
+    "Corruption is the meta-problem: medical supply, treatment abroad, textbooks, payroll, registries - nearly every pain point traces to opaque paper-based procurement and payment. An auditable digital trail is the core value proposition.",
+    "Design for two administrations: federated architecture (shared ID namespace, regional service nodes) hedges the unresolved east/west split and militia office-capture.",
+    "Anywhere-issuance is the #1 citizen-facing feature: 'must return to your place of origin' recurs across IDPs, Derna survivors, diaspora, east/west travelers - decoupling issuance from geography is the biggest single UX win.",
+    "Kill discretionary touchpoints: queues, forms rationing, 'clearance', name-calling are all corruption surfaces; appointments + status trackers + e-payment attack them without needing anti-corruption legislation.",
+    "Resilience requirement: platform must tolerate power cuts and shutdown-era connectivity - offline-first mobile design, SMS/USSD channels, assisted kiosks (post offices), QR codes readable without live connection.",
+    "Payment rails: the cash crisis makes cashless collection essential; must ride existing rails (Sadad, MobMoney, LYPay/OnePay) rather than bank cash - 3.11M app subscribers prove citizens will use ID-linked mobile services.",
+    "Single biggest fixable cause: excavation damage repeatedly kills power cables and fiber (Janzour 220kV, Airport Rd 30kV, Misrata-Tripoli 40Gbps) - a 'dial-before-you-dig' permit API addresses several failures at once.",
+    "The killer macro use case: IMF explicitly recommends replacing fuel subsidies with direct citizen cash transfers ('easiest to implement and most accepted by the public') - that is literally a GaaS product.",
+    "Design risk: the platform will be contested between two administrations; must be shutdown/power-cut resilient and handle ~hundreds of thousands without valid NINs rather than excluding them further."
+  ],
+  "existing_digital_rails": [
+    {"name": "Dawlati platform", "detail": "GNU's first national e-gov platform (May 2025) for electronic document submission; physical 'Dawlati centers' embedded in Libya Post offices; hosts Unified Economic Number service", "url": "https://libyaobserver.ly", "status": "launched; adoption metrics unknown"},
+    {"name": "Criminal record certificate e-service", "detail": "es.moi.gov.ly/criminal-case-status - apply, track, download PDF police clearance incl. from abroad; proof ministries CAN ship e-services", "url": "https://es.moi.gov.ly/criminal-case-status", "status": "active since 2023"},
+    {"name": "CBL payment rails", "detail": "LYPay/OnePay instant payments (Aug 2024): 834,814 subscribers, ~57k transactions in first 2 months; national switch via restructured Moamalat (Oliver Wyman advising); 13+ licensed e-wallets; Sadad since 2017; 4.7M debit cards, ~72k POS, 3.11M app subscribers", "url": "https://cbl.gov.ly", "status": "active"},
+    {"name": "CBL FX platform", "detail": "fcms.cbl.gov.ly - foreign currency management / personal FX allowance booking", "url": "https://fcms.cbl.gov.ly", "status": "active"},
+    {"name": "Your Instant Salary", "detail": "CBL system (Aug 2025) auto-matching employment + identity + bank data for payroll; praised in IMF Apr 2026 Article IV", "url": "https://libyaherald.com/2025/08/", "status": "active"},
+    {"name": "NID-SIM binding", "detail": "SIMs cannot activate without a National ID Number - already used for MFA/OTP in CBL systems", "url": "", "status": "enforced"},
+    {"name": "UN eRegulations portal", "detail": "ejraat.gov.ly - UNCTAD platform documenting business procedures step-by-step", "url": "https://ejraat.gov.ly/", "status": "active"},
+    {"name": "MOFA passport appointment booking", "detail": "booking.mofa.gov.ly for embassies", "url": "https://booking.mofa.gov.ly", "status": "active"},
+    {"name": "E-passport/e-ID national project", "detail": "Announced: 220 offices, 500 workstations, 4 print centers, 25k passports + 25k ID cards/day, 60 embassies + 20 mobile units", "url": "https://alwasat.ly/news/libya/399033", "status": "announced"},
+    {"name": "Sebha 'Baladi Plus'", "detail": "Municipal e-licensing launch Aug 2025 - template for municipal storefronts", "url": "https://libyareview.com/57863/", "status": "pilot"},
+    {"name": "Brega gas-cylinder e-registration", "detail": "National ID + mobile-linked cooking-gas cylinder booking; 34 instant-fill points operating, 70 targeted", "url": "https://libyaherald.com/2026/09/", "status": "active"},
+    {"name": "GIA / ITC institutions", "detail": "General Information Authority (digital lab, ESCWA maturity project, opendata.gia.gov.ly); ITC 'official authority for digital transformation'; Supreme E-Government Committee", "url": "https://gia.gov.ly", "status": "institutional"},
+    {"name": "Intilaqa project", "detail": "Matched civil-registry e-data with paper records for 1.8M families (97%) in 2024 - first cleanup since the 1970s; basis for trustworthy identity layer", "url": "https://libyaherald.com/2024/09/", "status": "near-complete"}
+  ],
+  "research_limitations": [
+    "English coverage is Tripoli/west-weighted; eastern-administration service failures are under-documented.",
+    "Some Reuters/2026 URLs may reflect page re-dating; single-source 2026 items should be treated as directional.",
+    "Bribery-rate hard data (62% TI GCB) is from 2013 - persistence confirmed by perception data but no recent quantitative bribery survey.",
+    "Dawlati platform's actual operational status/uptake metrics could not be verified.",
+    "Paywalled wire content (Reuters/AP) was read via syndicated versions (Zawya, VOA, Pulse).",
+    "Arabic-only sources (Al Wasat) were used via English summaries where available - Arabic verification recommended for some price/incident details."
+  ]
+}
